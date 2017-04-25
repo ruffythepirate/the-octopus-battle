@@ -26,8 +26,8 @@ function Crate(startX, startY, crateAstreoidImg) {
       // ctx.beginPath();
       // ctx.arc(x,y, firedRadius, 0,2*Math.PI);
       // ctx.stroke();
-      //base_image.src = 'img/comet.png';
-      base_image.src = 'img/meteor.png';
+      //base_image.src = 'resources/comet.png';
+      base_image.src = 'resources/meteor.png';
       ctx.drawImage(base_image, x, y, 3 * w, 3* h);
     } else {
       const base_image = new Image();

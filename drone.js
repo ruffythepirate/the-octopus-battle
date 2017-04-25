@@ -32,8 +32,8 @@ padControls = new window.PadCollector();
 var pendingPlayers = [];
 
 var astreoids = [
-'img/astreoid.png',
-'img/dangerousAstreoid.png'
+'resources/astreoid.png',
+'resources/dangerousAstreoid.png'
 ];
 
 var shouldRerenderBackground = false;
@@ -46,7 +46,7 @@ gameCanvas.height = window.innerHeight;
 var renderContext = gameCanvas.getContext('2d');
 
 var video = document.getElementById("video");
-var myAudio = new Audio("mariounderthewater.mp3"); // buffers automatically when created
+var myAudio = new Audio("resources/music.mp3"); // buffers automatically when created
 myAudio.addEventListener('ended', function() {
 	this.currentTime = 0;
 	this.play();

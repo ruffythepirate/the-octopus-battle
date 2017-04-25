@@ -81,7 +81,7 @@ function Player(startX, startY, color, controls) {
 
   function render(canvas, ctx) {
     const base_image = new Image();
-    base_image.src = `img/${color}.png`;
+    base_image.src = `resources/${color}.png`;
     ctx.drawImage(base_image, x, y, w, h);
 
     rope.render(canvas, ctx);
