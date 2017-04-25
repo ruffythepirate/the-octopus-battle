@@ -79,10 +79,28 @@ function Player(startX, startY, color, controls) {
     }
   }
 
-  function render(canvas, ctx) {
-    const base_image = new Image();
+
+  var base_image = null;
+
+  function initializeImage() {
+    base_image = new Image();
     base_image.src = `resources/${color}.png`;
-    ctx.drawImage(base_image, x, y, w, h);
+  }
+
+  function renderAsCircle(ctx) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(getX(),getY(),w /2,0,Math.PI*2,true);
+      ctx.closePath();
+      ctx.fill();
+  }
+
+  function render(canvas, ctx) {
+    if(base_image) {
+      ctx.drawImage(base_image, x, y, w, h);
+    } else {
+      renderAsCircle(ctx);
+    }
 
     rope.render(canvas, ctx);
   }
