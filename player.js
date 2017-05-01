@@ -178,9 +178,9 @@ function reset() {
     y += vy;
 
     x = Math.max(x, 0);
-    x = Math.min(x, gameCanvas.width);
+    x = Math.min(x, gameCanvas.width - w);
     y = Math.max(y, 0);
-    y = Math.min(y, gameCanvas.height);
+    y = Math.min(y, gameCanvas.height - h);
   }
 
   function getColor (){
