@@ -4,6 +4,7 @@ const CRATE_STATE_ENUM = {
   fired: 2
 };
 
+
 function Crate(startX, startY, crateAstreoidImg) {
 
   var x =startX, y=startY, vx = 0, vy =0;
@@ -40,11 +41,11 @@ function Crate(startX, startY, crateAstreoidImg) {
   }
 
   function updateSpeed() {
-    if(state === FALLING_LETTER_STATE_ENUM.unattached) {
+    if(state === CRATE_STATE_ENUM.unattached) {
       vy += GAME_CONSTANTS.g / 4;
       vy = Math.min(MAX_SPEED, vy);
 
-    } else if(state === FALLING_LETTER_STATE_ENUM.fired) {
+    } else if(state === CRATE_STATE_ENUM.fired) {
       vy += GAME_CONSTANTS.g;
     }
   }
@@ -69,7 +70,7 @@ function Crate(startX, startY, crateAstreoidImg) {
   function launch(exitSpeed, player) {
       setSpeed(exitSpeed);
       belongToPlayer = player;
-      state = FALLING_LETTER_STATE_ENUM.fired;
+      state = CRATE_STATE_ENUM.fired;
   }
 
   function setOwner(player) {
@@ -96,11 +97,11 @@ function Crate(startX, startY, crateAstreoidImg) {
     updateSpeed();
     updatePosition();
 
-    if(state !== FALLING_LETTER_STATE_ENUM.attached
+    if(state !== CRATE_STATE_ENUM.attached
       && isOutOfScreen()) {
       game.destroyCrate(self)
     }
-    if(state === FALLING_LETTER_STATE_ENUM.fired) {
+    if(state === CRATE_STATE_ENUM.fired) {
     players.forEach(p => {
       const px = p.getX();
       const py = p.getY();
