@@ -154,8 +154,6 @@ function reset() {
     if(attachedCrate) {
       const exitSpeed = rope.getRopeEndSpeed();
       attachedCrate.launch(exitSpeed, self);
-      // attachedCrate.setSpeed(exitSpeed);
-      // attachedCrate.setState(FALLING_LETTER_STATE_ENUM.fired);
       setCrate(null);
     }
   }

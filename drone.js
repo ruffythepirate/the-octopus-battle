@@ -171,6 +171,7 @@ function onkey(ev, key, down) {
 			updateBackground();
 		}
 	}
+	return true;
 }
 
 var playerColors = [
