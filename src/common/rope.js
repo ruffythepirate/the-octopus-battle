@@ -1,6 +1,6 @@
 const CRATE_STATE_ENUM = require('./consts/crateEnum.js');
 
-var Point = function (x, y) {
+const Point = function (x, y) {
   this.x = x;
   this.y = y;
 };
@@ -50,12 +50,12 @@ Point.prototype =
   }
 };
 
-var Constraint = function (element, distance) {
+const Constraint = function (element, distance) {
   this.element = element;
   this.distance = distance;
 };
 
-var Particle = function (left, top) {
+const Particle = function (left, top) {
 
   var currentPoint = new Point(left, top);
   var lastPoint = new Point(left, top);
@@ -138,7 +138,7 @@ var Particle = function (left, top) {
   };
 };
 
-var Rope = function (startElement) {
+const Rope = function (startElement) {
 
   var particles = [];
   var gravityVector = new Point(0, 0.9);

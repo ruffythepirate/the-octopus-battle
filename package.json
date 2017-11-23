@@ -4,7 +4,7 @@
   "description": "A simple simulation of what happens when octopuses are left alone in space",
   "main": "client/drone.js",
   "scripts": {
-    "test": "test",
+    "test": "node src/**/*.spec.js",
     "compile": "node_modules/.bin/webpack",
     "eslint": "node_modules/.bin/eslint src"
   },
@@ -25,6 +25,9 @@
     "eslint": "^4.11.0",
     "eslint-config-google": "^0.9.1",
     "eslint-loader": "^1.9.0",
+    "proxyquire": "^1.8.0",
+    "sinon": "^4.1.2",
+    "tape": "^4.8.0",
     "webpack": "^3.8.1"
   }
 }
