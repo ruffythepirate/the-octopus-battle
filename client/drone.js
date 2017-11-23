@@ -19,6 +19,7 @@ const KEY = {
 	RIGHT: 39,
 	DOWN: 40,
 	ALT: 18,
+	CTRL: 17,
 	A: 65,
 	W: 87,
 	D: 68,
@@ -196,7 +197,7 @@ function joinKeyboardOne() {
 			{key: KEY.UP, value:'up'},
 			{key: KEY.RIGHT, value:'right'},
 			{key: KEY.DOWN, value:'down'},
-			{key: KEY.ALT, value:'release'}
+			{key: KEY.CTRL, value:'release'}
 			]);
 		players.push(player)
 
