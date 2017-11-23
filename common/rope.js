@@ -143,11 +143,6 @@ var Rope = function (startElement) {
   var timeStep = 0.4;
   let crate = null;
 
-  // var gradient = context.createLinearGradient(0, 0, canvas.width, canvas.height);
-  // gradient.addColorStop(0, "blue");
-  // gradient.addColorStop(0.5, "white");
-  // gradient.addColorStop(1, "red");
-
   var update = function () {
     accumulateForces();
     verlet();
@@ -236,7 +231,7 @@ var Rope = function (startElement) {
     setCrate: (newCrate) => {
       crate = newCrate;
       if(newCrate) {
-        crate.setState(FALLING_LETTER_STATE_ENUM.attached)
+        crate.setState(CRATE_STATE_ENUM.attached)
       }
     },
     overlapsCrate: overlapsCrate

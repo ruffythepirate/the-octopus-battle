@@ -52,19 +52,13 @@ myAudio.addEventListener('ended', function() {
 	this.currentTime = 0;
 	this.play();
 }, false);
-myAudio.play();
+// myAudio.play();
 
 var playerAreaStartX = 0;
 
 var game = {
-	word: generateGameWord(),
-	availableLetters: 'abcdefghijklmnopqrsştuvxyz'.toUpperCase()
 };
 
-game.destroyFallingLetter = function (fallingLetter) {
-	removeFromArray(fallingLetters, fallingLetter);
-	removeFromArray(gameItems, fallingLetter);
-};
 game.destroyCrate = function (crate) {
 	removeFromArray(crates, crate);
 	removeFromArray(gameItems, crate);
@@ -103,20 +97,6 @@ function removeFromArray(array, item) {
 	}
 
 }
-
-function generateGameWord() {
-	exampleWords = [
-	'Vertrag',
-	'ImmobilienScout',
-	'PPB',
-	'Test'
-	].map(w => {return w.toUpperCase();});
-
-	const wordIndex = Math.floor(Math.random() * exampleWords.length);
-	return exampleWords[wordIndex];
-}
-
-
 
 const keyMap ={};
 
