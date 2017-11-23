@@ -1,6 +1,6 @@
 const GAME_CONSTANTS = require('./consts/gameConstants.js');
 
-const Rope = require("./rope.js");
+const Rope = require('./rope.js');
 
 function Player(startX, startY, color, controls) {
   var health = 100;
@@ -47,7 +47,7 @@ function Player(startX, startY, color, controls) {
 
   function update(canvas, crates) {
 
-	applyControls();
+    applyControls();
 
     updateSpeed();
     updatePosition(canvas);
@@ -60,16 +60,16 @@ function Player(startX, startY, color, controls) {
   }
 
   function applyControls() {
-  	ax = 0;
-  	ay = 0;
-  	ax -= controls.left * GAME_CONSTANTS.hAcceleration;
-  	ax += controls.right * GAME_CONSTANTS.hAcceleration;
-  	ay -= controls.up * GAME_CONSTANTS.vAcceleration;
-  	ay += controls.down * GAME_CONSTANTS.vAcceleration;
+    ax = 0;
+    ay = 0;
+    ax -= controls.left * GAME_CONSTANTS.hAcceleration;
+    ax += controls.right * GAME_CONSTANTS.hAcceleration;
+    ay -= controls.up * GAME_CONSTANTS.vAcceleration;
+    ay += controls.down * GAME_CONSTANTS.vAcceleration;
 
-  	if(controls.a) {
-  		releaseCrate();
-  	}
+    if(controls.a) {
+      releaseCrate();
+    }
   }
 
   function updateCarriedCrate(crates) {
@@ -78,13 +78,15 @@ function Player(startX, startY, color, controls) {
         return rope.overlapsCrate(c);
       });
       if(crateToCapture) {
-      	setCrate(crateToCapture);
+        setCrate(crateToCapture);
       }
     }
   }
 
 
-  var base_image = null;
+  let base_image = null;
+
+  initializeImage();
 
   function initializeImage() {
     base_image = new Image();
@@ -92,11 +94,11 @@ function Player(startX, startY, color, controls) {
   }
 
   function renderAsCircle(ctx) {
-      ctx.fillStyle = color;
-      ctx.beginPath();
-      ctx.arc(getX(),getY(),w /2,0,Math.PI*2,true);
-      ctx.closePath();
-      ctx.fill();
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(getX(),getY(),w /2,0,Math.PI*2,true);
+    ctx.closePath();
+    ctx.fill();
   }
 
   function render(canvas, ctx) {
@@ -122,18 +124,18 @@ function Player(startX, startY, color, controls) {
   }
 
   function setControls(newControls) {
-  	controls = newControls;
+    controls = newControls;
   }
 
-function reset() {
-	x = startX;
-	y = startY;
-	ax = 0;
-	ay = 0;
-	vx = 0;
-	vy = 0;
-  setCrate(null);
-}
+  function reset() {
+    x = startX;
+    y = startY;
+    ax = 0;
+    ay = 0;
+    vx = 0;
+    vy = 0;
+    setCrate(null);
+  }
 
 
   var self = {
@@ -148,9 +150,9 @@ function reset() {
     addDamage: addDamage,
     getColor: getColor,
     setCrate: setCrate,
-    setAx: (newAX) => {ax = newAX},
-    setAy: (newAY) => {ay = newAY},
-    setPosition: (newX,newY) => {},
+    setAx: (newAX) => {ax = newAX;},
+    setAy: (newAY) => {ay = newAY;},
+    setPosition: () => {},
     reset: reset
   };
 
@@ -164,15 +166,15 @@ function reset() {
 
   function setCrate(crate) {
 
-  	if(crate) {
-  	 if( crate.getBelongToPlayer()) {
-  		const otherPlayer = crate.getBelongToPlayer();
-  		otherPlayer.setCrate(null);
-  		}
-  		crate.setOwner(self);
-	}
-  	attachedCrate = crate;
-  	rope.setCrate(crate);
+    if(crate) {
+      if( crate.getBelongToPlayer()) {
+        const otherPlayer = crate.getBelongToPlayer();
+        otherPlayer.setCrate(null);
+      }
+      crate.setOwner(self);
+    }
+    attachedCrate = crate;
+    rope.setCrate(crate);
   }
 
   function updatePosition(gameCanvas) {

@@ -1,11 +1,9 @@
-const CRATE_STATE_ENUM = require('./consts/crateEnum.js')
-
-const game = require('./game.js')
+const CRATE_STATE_ENUM = require('./consts/crateEnum.js');
 
 var Point = function (x, y) {
   this.x = x;
   this.y = y;
-}
+};
 
 Point.prototype =
 {
@@ -50,12 +48,12 @@ Point.prototype =
   init: function () {
     this.x = this.y = 0;
   }
-}
+};
 
 var Constraint = function (element, distance) {
   this.element = element;
   this.distance = distance;
-}
+};
 
 var Particle = function (left, top) {
 
@@ -83,7 +81,7 @@ var Particle = function (left, top) {
     calcPoint.subtract(lastPoint);
     forcePoint.scale(timeStep * timeStep);
     calcPoint.add(forcePoint);
-    currentPoint.add(calcPoint)
+    currentPoint.add(calcPoint);
 
     lastPoint.copy(tempPoint);
   };
@@ -105,7 +103,7 @@ var Particle = function (left, top) {
       var dx = currentPoint.x - constraints[i].element.getX();
       var dy = currentPoint.y - constraints[i].element.getY();
       var d1 = Math.sqrt((dx * dx) + (dy * dy));
-      var d2 = 0
+      var d2 = 0;
       if (d1 != 0) {
         d2 = 0.5 * (d1 - constraints[i].distance) / d1;
       }
@@ -138,7 +136,7 @@ var Particle = function (left, top) {
     satisfyConstraints: satisfyConstraints,
     applyDelta: applyDelta
   };
-}
+};
 
 var Rope = function (startElement) {
 
@@ -199,7 +197,7 @@ var Rope = function (startElement) {
     }
     context.stroke();
     context.closePath();
-  }
+  };
 
   function overlapsCrate(crate) {
     const overlapParticle = particles.find(p => {
@@ -219,7 +217,7 @@ var Rope = function (startElement) {
         particles[i].addConstraint(new Constraint(particles[i - 1], 8));
       }
     }
-  }
+  };
 
   initialize();
 
@@ -235,11 +233,11 @@ var Rope = function (startElement) {
     setCrate: (newCrate) => {
       crate = newCrate;
       if(newCrate) {
-        crate.setState(CRATE_STATE_ENUM.attached)
+        crate.setState(CRATE_STATE_ENUM.attached);
       }
     },
     overlapsCrate: overlapsCrate
   };
-}
+};
 
 module.exports = Rope;

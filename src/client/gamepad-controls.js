@@ -2,9 +2,9 @@
   const axesThreshold = 0.3;
 
   const defaultControlTypeConfig = {
-    "Up": {
+    'Up': {
       id: 0,
-      name: "Up",
+      name: 'Up',
       mozGamePadIndex: 0,
       chromeGamePadIndex: 12,
       keyCode: 38,
@@ -12,9 +12,9 @@
       gamepadIndex: null,
       analogStickValueCondition: ((value, index) => (value < (axesThreshold * -1) && index === 1))
     },
-    "Down": {
+    'Down': {
       id: 1,
-      name: "Down",
+      name: 'Down',
       mozGamePadIndex: 1,
       chromeGamePadIndex: 13,
       keyCode: 40,
@@ -22,9 +22,9 @@
       gamepadIndex: null,
       analogStickValueCondition: ((value, index) => (value > (axesThreshold) && index === 1))
     },
-    "Left": {
+    'Left': {
       id: 2,
-      name: "Left",
+      name: 'Left',
       mozGamePadIndex: 2,
       chromeGamePadIndex: 14,
       keyCode: 37,
@@ -32,9 +32,9 @@
       gamepadIndex: null,
       analogStickValueCondition: ((value, index) => (value < (axesThreshold * -1) && index === 0))
     },
-    "Right": {
+    'Right': {
       id: 3,
-      name: "Right",
+      name: 'Right',
       mozGamePadIndex: 3,
       chromeGamePadIndex: 15,
       keyCode: 39,
@@ -42,57 +42,57 @@
       gamepadIndex: null,
       analogStickValueCondition: ((value, index) => (value > axesThreshold && index === 0))
     },
-    "Start": {
+    'Start': {
       id: 4,
-      name: "Start",
+      name: 'Start',
       mozGamePadIndex: 4,
       chromeGamePadIndex: 9,
       analogStickValue: 0,
       gamepadIndex: null,
-      key: "s",
+      key: 's',
     },
-    "Select": {
+    'Select': {
       id: 5,
-      name: "Select",
+      name: 'Select',
       mozGamePadIndex: 5,
       chromeGamePadIndex: 8,
       analogStickValue: 0,
       gamepadIndex: null,
     },
-    "A": {
+    'A': {
       id: 6,
-      name: "A",
+      name: 'A',
       mozGamePadIndex: 11,
       chromeGamePadIndex: 0,
       keyCode: 13,
-      key: "a",
+      key: 'a',
       analogStickValue: 0,
       gamepadIndex: null,
     },
-    "B": {
+    'B': {
       id: 7,
-      name: "B",
+      name: 'B',
       mozGamePadIndex: 12,
       chromeGamePadIndex: 1,
-      key: "b",
+      key: 'b',
       analogStickValue: 0,
       gamepadIndex: null,
     },
-    "X": {
+    'X': {
       id: 8,
-      name: "X",
+      name: 'X',
       mozGamePadIndex: 13,
       chromeGamePadIndex: 2,
-      key: "x",
+      key: 'x',
       analogStickValue: 0,
       gamepadIndex: null,
     },
-    "Y": {
+    'Y': {
       id: 9,
-      name: "Y",
+      name: 'Y',
       mozGamePadIndex: 14,
       chromeGamePadIndex: 3,
-      key: "y",
+      key: 'y',
       analogStickValue: 0,
       gamepadIndex: null,
     },
@@ -112,20 +112,20 @@
       return (!!window.InstallTrigger);
     }
 
-function getControlTypeByCondition(condition) {
+    function getControlTypeByCondition(condition) {
       let result = null;
 
-     Object
+      Object
         .keys(controlTypes)
         .forEach((type) => {
           let current = controlTypes[type];
 
-         if (!result && condition(current)) {
+          if (!result && condition(current)) {
             result = Object.assign({}, current);
           }
         });
 
-     return result;
+      return result;
     }
 
     function isNotAlreadyPressed(controlType, gamepadIndex) {
@@ -219,7 +219,7 @@ function getControlTypeByCondition(condition) {
         }
       });
 
-      return result
+      return result;
     }
 
     function clearPressedControls() {
@@ -231,23 +231,11 @@ function getControlTypeByCondition(condition) {
       return ((gamepads && gamepads.length > 0) ? gamepads : []);
     }
 
-    window.addEventListener("gamepadconnected", (e) => {
-      console.log("GameControlls: Gamepad connected at index %d: %s", e.gamepad.index, e.gamepad.id);
+    window.addEventListener('gamepadconnected', () => {
     });
 
-    window.addEventListener("gamepaddisconnected", function (e) {
-      console.log("GameControlls: Gamepad disconnected from index %d: %s", e.gamepad.index, e.gamepad.id);
+    window.addEventListener('gamepaddisconnected', function () {
     });
-
-    // window.addEventListener("keydown", (e) => {
-    //   let typeByKeydown = getControlTypeByCondition((current) => e.keyCode === current.keyCode) || getControlTypeByCondition((current) => e.key === current.key);
-
-    //   if (typeByKeydown !== null) {
-    //     pressedControls.push(typeByKeydown);
-    //   } else {
-    //     console.log("no key mapping for key event: ", e);
-    //   }
-    // });
 
     this.isPressed = isPressed;
     this.types = controlTypes;
@@ -261,12 +249,12 @@ function getControlTypeByCondition(condition) {
       collectPressedGamePadButtons();
 
       return pressedControls;
-    })
+    });
   }
 
-  if (typeof module !== "undefined" && module.exports) {
+  if (typeof module !== 'undefined' && module.exports) {
     module.exports = GameControl;
-  } else if (typeof window !== "undefined") {
+  } else if (typeof window !== 'undefined') {
     window.GameControl = GameControl;
   }
 

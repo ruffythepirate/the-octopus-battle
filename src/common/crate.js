@@ -1,7 +1,7 @@
 const GAME_CONSTANTS = require('./consts/gameConstants.js');
-const CRATE_STATE_ENUM = require('./consts/crateEnum.js')
+const CRATE_STATE_ENUM = require('./consts/crateEnum.js');
 
-const game = require('./game.js')
+const game = require('./game.js');
 
 function Crate(startX, startY, crateAstreoidImg) {
 
@@ -57,12 +57,12 @@ function Crate(startX, startY, crateAstreoidImg) {
 
   var belongToPlayer;
 
-  const setSpeed = (speedVector) => {vx = speedVector.x; vy = speedVector.y}
+  const setSpeed = (speedVector) => {vx = speedVector.x; vy = speedVector.y;};
 
   function launch(exitSpeed, player) {
-      setSpeed(exitSpeed);
-      belongToPlayer = player;
-      state = CRATE_STATE_ENUM.fired;
+    setSpeed(exitSpeed);
+    belongToPlayer = player;
+    state = CRATE_STATE_ENUM.fired;
   }
 
   function setOwner(player) {
@@ -75,7 +75,6 @@ function Crate(startX, startY, crateAstreoidImg) {
     render: render,
     update: update,
     contains: contains,
-    getLetter: () => {return letter;},
     setPosition: (newX, newY) => {x = newX; y = newY;},
     getState: () => {return state;},
     setState: (newState) => {state = newState;},
@@ -91,19 +90,19 @@ function Crate(startX, startY, crateAstreoidImg) {
 
     if(state !== CRATE_STATE_ENUM.attached
       && isOutOfScreen(canvas)) {
-      game.destroyCrate(self)
+      game.destroyCrate(self);
     }
     if(state === CRATE_STATE_ENUM.fired) {
-    players.forEach(p => {
-      const px = p.getX();
-      const py = p.getY();
+      players.forEach(p => {
+        const px = p.getX();
+        const py = p.getY();
 
-      const distance = Math.hypot(px -x, py -y);
+        const distance = Math.hypot(px -x, py -y);
 
-      if(distance < firedRadius) {
-        game.registerPlayerHit( p, self);        
-      }
-    })
+        if(distance < firedRadius) {
+          game.registerPlayerHit( p, self);        
+        }
+      });
     }
   }
 
