@@ -1,9 +1,7 @@
-const CRATE_STATE_ENUM = {
-  unattached: 0,
-  attached: 1,
-  fired: 2
-};
+const GAME_CONSTANTS = require('./consts/gameConstants.js');
+const CRATE_STATE_ENUM = require('./consts/crateEnum.js')
 
+const game = require('./game.js')
 
 function Crate(startX, startY, crateAstreoidImg) {
 
@@ -24,16 +22,10 @@ function Crate(startX, startY, crateAstreoidImg) {
     if(state === CRATE_STATE_ENUM.fired) {
       const base_image = new Image();
 
-      // ctx.beginPath();
-      // ctx.arc(x,y, firedRadius, 0,2*Math.PI);
-      // ctx.stroke();
-      //base_image.src = 'resources/comet.png';
       base_image.src = 'resources/meteor.png';
       ctx.drawImage(base_image, x, y, 3 * w, 3* h);
     } else {
       const base_image = new Image();
-
-      //ctx.fillRect(x, y, w, h);
 
       base_image.src = crateAstreoidImg;
       ctx.drawImage(base_image, x, y, w, h);
@@ -93,12 +85,12 @@ function Crate(startX, startY, crateAstreoidImg) {
     getBelongToPlayer: () => {return belongToPlayer;}
   };
 
-  function update() {
+  function update(canvas, crates, players) {
     updateSpeed();
     updatePosition();
 
     if(state !== CRATE_STATE_ENUM.attached
-      && isOutOfScreen()) {
+      && isOutOfScreen(canvas)) {
       game.destroyCrate(self)
     }
     if(state === CRATE_STATE_ENUM.fired) {
@@ -115,7 +107,7 @@ function Crate(startX, startY, crateAstreoidImg) {
     }
   }
 
-  function isOutOfScreen() {
+  function isOutOfScreen(gameCanvas) {
     return x > gameCanvas.width || x < 0 || y < 0 || y > gameCanvas.height;
   }
 
@@ -123,3 +115,5 @@ function Crate(startX, startY, crateAstreoidImg) {
 
   return self;
 }
+
+module.exports = Crate;

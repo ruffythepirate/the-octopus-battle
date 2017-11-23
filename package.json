@@ -1,0 +1,26 @@
+{
+  "name": "the-octopus-battle",
+  "version": "1.0.0",
+  "description": "A simple simulation of what happens when octopuses are left alone in space",
+  "main": "client/drone.js",
+  "scripts": {
+    "test": "test",
+    "compile": "node node_modules/webpack/bin/webpack.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruffythepirate/the-octopus-battle.git"
+  },
+  "keywords": [
+    "octopuses"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruffythepirate/the-octopus-battle/issues"
+  },
+  "homepage": "https://github.com/ruffythepirate/the-octopus-battle#readme",
+  "devDependencies": {
+    "webpack": "^3.8.1"
+  }
+}

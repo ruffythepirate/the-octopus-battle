@@ -1,3 +1,7 @@
+const CRATE_STATE_ENUM = require('./consts/crateEnum.js')
+
+const game = require('./game.js')
+
 var Point = function (x, y) {
   this.x = x;
   this.y = y;
@@ -238,3 +242,4 @@ var Rope = function (startElement) {
   };
 }
 
+module.exports = Rope;

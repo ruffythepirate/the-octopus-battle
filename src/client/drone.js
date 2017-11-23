@@ -1,16 +1,12 @@
-const GAME_CONSTANTS = {
-  g: 0.08,				//gravity acceleration
-  vFriction: 0.99,		//vertical friction factor
-  hFriction: 0.99, 	//horizontal friction factor
-  vAcceleration: 0.7,	//vertical acceleration
-  hAcceleration: 0.7,	//horizontal acceleration
+const GAME_CONSTANTS = require("../common/consts/gameConstants.js");
 
-  hStabilize: 0.1,	// when |speed| below this it becomes zero.
+const Player = require("../common/player.js");
+const Controls = require("../common/controls.js");
+const Crate = require("../common/crate.js");
 
-  letterSpawnFrequency: 3,
-  playerRespawnTime: 5,
-  damagePerHit: 20
-};
+const PadCollector = require("./gamepad-collector.js")
+
+const game = require('../common/game.js')
 
 
 const KEY = {
@@ -27,7 +23,7 @@ const KEY = {
 	F: 70,
 };
 
-padControls = new window.PadCollector();
+padControls = new PadCollector();
 
 
 var pendingPlayers = [];
@@ -56,8 +52,6 @@ myAudio.addEventListener('ended', function() {
 
 var playerAreaStartX = 0;
 
-var game = {
-};
 
 game.destroyCrate = function (crate) {
 	removeFromArray(crates, crate);
@@ -255,7 +249,7 @@ var counter = 0;
 function mainGameLoop() {
 	renderContext.drawImage(video, 0, 0, gameCanvas.width, gameCanvas.height);
 
-	gameItems.forEach(i => {i.update();});
+	gameItems.forEach(i => {i.update(gameCanvas, crates, players);});
 	renderContext.drawImage(backgroundCanvas, 0, 0);
 	gameItems.forEach(i => {i.render(gameCanvas, renderContext);});
 
