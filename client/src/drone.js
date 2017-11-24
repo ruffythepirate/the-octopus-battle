@@ -1,12 +1,12 @@
-const GAME_CONSTANTS = require('../common/consts/gameConstants.js');
+const GAME_CONSTANTS = require('../../common/consts/gameConstants.js');
 
-const Player = require('../common/player.js');
-const Controls = require('../common/controls.js');
-const Crate = require('../common/crate.js');
+const Player = require('../../common/player.js');
+const Controls = require('../../common/controls.js');
+const Crate = require('../../common/crate.js');
 
 const PadCollector = require('./gamepad-collector.js');
 
-const game = require('../common/game.js');
+const game = require('../../common/game.js');
 
 
 const KEY = {

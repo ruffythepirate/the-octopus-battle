@@ -4,13 +4,13 @@ This is what happens when octopuses are left by themselves alone in space - they
 
 # Building
 
-The project is built using webpack and npm. Make sure that you have npm installed. Then run `npm install` in the root folder. After this run `npm run compile`
+The project is built using webpack and npm. Make sure that you have npm installed. Navigate into the `client` folder. Then run `npm install` in the root folder. After this run `npm run compile`
 
 # Starting
 
 First `build` the project (see the Building section).
 
-To run the project you simply open `drone.html` in a browser. There are images and a background image that tries to be loaded. For copyright reasons these images are not part of the repository, but they could be added to a `resources` folder.
+To run the project you simply open `client/drone.html` in a browser. There are images and a background image that tries to be loaded. For copyright reasons these images are not part of the repository, but they could be added to a `resources` folder.
 
 # Future plans
 
