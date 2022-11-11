@@ -242,6 +242,8 @@ function mainGameLoop() {
   const padControls = new PadCollector();
   
   //renderContext.drawImage(video, 0, 0, gameCanvas.width, gameCanvas.height);
+  renderContext.fillStyle = "white"
+  renderContext.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
 
   gameItems.forEach(i => {i.update(gameCanvas, crates, players);});
   renderContext.drawImage(backgroundCanvas, 0, 0);
