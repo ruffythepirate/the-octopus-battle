@@ -86,11 +86,15 @@ function Player(startX, startY, color, controls) {
 
   let base_image = null;
 
-  //initializeImage();
+  try {
+    initializeImage();
+  } catch (e) {
+    console.err(`Failed to initialize image ${color}`);
+  }
 
   function initializeImage() {
     base_image = new Image();
-    base_image.src = `resources/${color}.png`;
+    base_image.src = `resources/${color}_small.png`;
   }
 
   function renderAsCircle(ctx) {

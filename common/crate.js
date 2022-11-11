@@ -3,6 +3,24 @@ const CRATE_STATE_ENUM = require('./consts/crateEnum.js');
 
 const game = require('./game.js');
 
+let astroid_image;
+let astroid_thrown_image;
+
+try {
+  initializeAstroidImages();
+} catch (e) {
+  astroid_image = undefined;
+  astroid_thrown_image = undefined;
+  console.err(`Failed to initialize image ${color}`);
+}
+
+function initializeAstroidImages() {
+  astroid_image = new Image();
+  astroid_image.src = `resources/astroid.png`;
+  astroid_thrown_image = new Image();
+  astroid_thrown_image.src = `resources/thrown-astroid.png`;
+}
+
 function Crate(startX, startY, crateAstreoidImg) {
 
   var x =startX, y=startY, vx = 0, vy =0;
@@ -19,17 +37,15 @@ function Crate(startX, startY, crateAstreoidImg) {
 
   function render(canvas, ctx) {
     ctx.fillStyle = color;
-    renderAsCircle(ctx)
-/*    if(state === CRATE_STATE_ENUM.fired) {
-      const base_image = new Image();
-      base_image.src = 'resources/meteor.png';
-      ctx.drawImage(base_image, x, y, 3 * w, 3* h);
+    if(astroid_image) {
+      if(state === CRATE_STATE_ENUM.fired) {
+        ctx.drawImage(astroid_thrown_image, x, y, 2 * w, 2* h);
+      } else {
+        ctx.drawImage(astroid_image, x, y, w, h);
+      }
     } else {
-      const base_image = new Image();
-
-      base_image.src = crateAstreoidImg;
-      ctx.drawImage(base_image, x, y, w, h);
-    }*/
+      renderAsCircle(ctx)
+    }
   }
 
   function renderAsCircle(ctx) {

@@ -242,7 +242,7 @@ function mainGameLoop() {
   const padControls = new PadCollector();
   
   //renderContext.drawImage(video, 0, 0, gameCanvas.width, gameCanvas.height);
-  renderContext.fillStyle = "white"
+  renderContext.fillStyle = "black"
   renderContext.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
 
   gameItems.forEach(i => {i.update(gameCanvas, crates, players);});
@@ -336,7 +336,7 @@ function renderHealthBars(context) {
     context.fillRect(20, 35 + i * 20, healthWidth, 15);
     context.fillStyle = 'red';
     context.fillRect(20 + healthWidth, 35 + i * 20, damageWidth, 15);
-    context.strokeStyle = 'white';
+    context.strokeStyle = 'black';
     context.strokeRect(20, 35 + i * 20, healthBarWidth, 15);
 
 
