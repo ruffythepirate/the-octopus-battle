@@ -86,7 +86,7 @@ function Player(startX, startY, color, controls) {
 
   let base_image = null;
 
-  initializeImage();
+  //initializeImage();
 
   function initializeImage() {
     base_image = new Image();

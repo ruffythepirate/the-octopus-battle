@@ -19,9 +19,9 @@ function Crate(startX, startY, crateAstreoidImg) {
 
   function render(canvas, ctx) {
     ctx.fillStyle = color;
-    if(state === CRATE_STATE_ENUM.fired) {
+    renderAsCircle(ctx)
+/*    if(state === CRATE_STATE_ENUM.fired) {
       const base_image = new Image();
-
       base_image.src = 'resources/meteor.png';
       ctx.drawImage(base_image, x, y, 3 * w, 3* h);
     } else {
@@ -29,7 +29,15 @@ function Crate(startX, startY, crateAstreoidImg) {
 
       base_image.src = crateAstreoidImg;
       ctx.drawImage(base_image, x, y, w, h);
-    }
+    }*/
+  }
+
+  function renderAsCircle(ctx) {
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.arc(x,y,w /2,0,Math.PI*2,true);
+    ctx.closePath();
+    ctx.fill();
   }
 
   function updateSpeed() {

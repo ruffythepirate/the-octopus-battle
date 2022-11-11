@@ -37,12 +37,12 @@ gameCanvas.height = window.innerHeight;
 
 var renderContext = gameCanvas.getContext('2d');
 
-var video = document.getElementById('video');
-var myAudio = new Audio('resources/music.mp3'); // buffers automatically when created
-myAudio.addEventListener('ended', function() {
-  this.currentTime = 0;
-  this.play();
-}, false);
+// var video = document.getElementById('video');
+// var myAudio = new Audio('resources/music.mp3'); // buffers automatically when created
+// myAudio.addEventListener('ended', function() {
+//  this.currentTime = 0;
+//  this.play();
+//}, false);
 // myAudio.play();
 
 var playerAreaStartX = 0;
@@ -241,7 +241,7 @@ function mainGameLoop() {
 
   const padControls = new PadCollector();
   
-  renderContext.drawImage(video, 0, 0, gameCanvas.width, gameCanvas.height);
+  //renderContext.drawImage(video, 0, 0, gameCanvas.width, gameCanvas.height);
 
   gameItems.forEach(i => {i.update(gameCanvas, crates, players);});
   renderContext.drawImage(backgroundCanvas, 0, 0);
