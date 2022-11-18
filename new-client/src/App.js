@@ -1,11 +1,11 @@
 import './App.css';
-import Menu from './components/menu/Menu.jsx'
+import Credits from './pages/credits/Credits';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Menu/>
+        <Credits />
       </header>
     </div>
   );
