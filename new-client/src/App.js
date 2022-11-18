@@ -9,11 +9,15 @@ function App() {
   function getSelectedPage(selectedPage) {
     switch (selectedPage) {
       case 'Credits':
-        return <Credits />;
+        return <Credits handleExit={handleExit} />;
       default:
         const menuItems = ["Practice", "2 Players", "Instuctions", "Credits"];
         return <Menu menuItems={menuItems} handleItemClicked={handleItemClicked} />;
     }
+  }
+
+  function handleExit() {
+    setSelectedPage('Menu');
   }
 
   function handleItemClicked(item) {

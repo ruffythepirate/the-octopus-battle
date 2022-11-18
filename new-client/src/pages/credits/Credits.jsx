@@ -1,7 +1,21 @@
 import './credits.css';
 import Category from './components/category/Category';
 
-export default function Credits() {
+import { useEffect } from "react";
+
+export default function Credits({handleExit}) {
+
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyPress);
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  });
+
+  function handleKeyPress(event) {
+    handleExit();
+  }
 
   const contributorsPerCategory = {
     Programming: [
