@@ -155,6 +155,8 @@ export default function GameRunner(gameCanvas, players, checkWinCondition, keyMa
     updateBackground();
   }
 
+  this.startGame = startGame;
+
   function generateAstreoidImageSrc() {
     const astreoidIndex = Math.floor(Math.random() * astreoids.length);
     return astreoids[astreoidIndex];

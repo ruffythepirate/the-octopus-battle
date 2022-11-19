@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import './practice.css';
 import GameRunner from '../../common/gameRunner.js';
 const Player = require('../../common/player.js');
@@ -41,10 +43,16 @@ export default function Practice({handleExit}) {
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyPress);
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    }
   });
 
-  useeffect(() => {
+  useEffect(() => {
     const canvas = document.getElementById('game-canvas');
+    if (!canvas) {
+      return;
+    }
     const context = canvas.getContext('2d');
     const width = canvas.width;
     const height = canvas.height;
@@ -75,12 +83,12 @@ export default function Practice({handleExit}) {
     }
 
     joinKeyboardOne();
-    const gameRunner = new GameRunner(gameCanvas, players, checkWinCondition, keyMap);
+    const gameRunner = new GameRunner(canvas, players, checkWinCondition, keyMap);
     gameRunner.startGame();
 
-  }, []);
+  });
 
-return (<div id="overlay" class="fullSize">
-      <canvas id='game-canvas' class="fullSize"></canvas>
+return (<div id="overlay" className="fullSize">
+      <canvas id='game-canvas' className="fullSize"></canvas>
   </div>);
 }
