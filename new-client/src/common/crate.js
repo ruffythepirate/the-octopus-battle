@@ -11,7 +11,7 @@ try {
 } catch (e) {
   astroid_image = undefined;
   astroid_thrown_image = undefined;
-  console.err(`Failed to initialize image ${color}`);
+  console.err(`Failed to initialize image for astroid: ${e}`);
 }
 
 function initializeAstroidImages() {
@@ -23,13 +23,13 @@ function initializeAstroidImages() {
 
 function Crate(startX, startY, crateAstreoidImg) {
 
-  var x =startX, y=startY, vx = 0, vy =0;
+  let x =startX, y=startY, vx = 0, vy =0;
 
   const w = 50, h = 50;
 
   const firedRadius = 75;
 
-  var color = '#FFFFFF';
+  const color = '#FFFFFF';
 
   const MAX_SPEED = 3;
 
