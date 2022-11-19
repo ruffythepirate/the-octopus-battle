@@ -1,6 +1,7 @@
 import './App.css';
 import Credits from './pages/credits/Credits';
 import Menu from './pages/menu/Menu';
+import Practice from './pages/practice/Practice';
 import { useState} from "react";
 
 function App() {
@@ -10,6 +11,8 @@ function App() {
     switch (selectedPage) {
       case 'Credits':
         return <Credits handleExit={handleExit} />;
+      case 'Practice':
+        return <Practice handleExit={handleExit} />;
       default:
         const menuItems = ["Practice", "2 Players", "Instuctions", "Credits"];
         return <Menu menuItems={menuItems} handleItemClicked={handleItemClicked} />;
