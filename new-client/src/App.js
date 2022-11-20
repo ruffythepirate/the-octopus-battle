@@ -2,7 +2,7 @@ import './App.css';
 import Credits from './pages/credits/Credits';
 import Menu from './pages/menu/Menu';
 import Practice from './pages/practice/Practice';
-import { useState} from "react";
+import { useState, useEffect } from "react";
 import SplitScreen from './pages/splitScreen/SplitScreen';
 
 function App() {
@@ -33,9 +33,13 @@ function App() {
 
   const selectedPageComponent = getSelectedPage(selectedPage);
 
+  useEffect(() => {
+    document.getElementById('music').play();
+  });
 
   return (
     <div className="App">
+      <audio id="music" src="resources/CosmicSnailsDancing.mp3" loop autoPlay type="audio/mpeg"></audio>
       <header className="App-header">
         {selectedPageComponent}
       </header>

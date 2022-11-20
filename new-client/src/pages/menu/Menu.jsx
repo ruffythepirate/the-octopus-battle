@@ -1,6 +1,7 @@
 import './menu.css';
 import MenuItem from "./components/menuItem/MenuItem";
 import { useState, useEffect } from "react";
+import { playMusic } from "../../common/music.js";
 
 export default function Menu({
   menuItems,
@@ -8,6 +9,10 @@ export default function Menu({
 }) {
 
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    return playMusic();
+  });
 
   const menuItemTags = menuItems.map(
     (title, index) => <MenuItem key={title} title={title} selected={index === selectedIndex}/> );
