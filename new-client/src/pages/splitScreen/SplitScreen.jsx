@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
 import './splitScreen.css';
 
-import { playMusic } from '../../common/music.js';
-
 import GameRunner from '../../common/gameRunner.js';
 const Player = require('../../common/player.js');
 const Controls = require('../../common/controls.js');
@@ -39,9 +37,6 @@ const GAME_CONSTANTS = require('../../common/consts/gameConstants.js');
 export default function SplitScreen({handleExit}) {
 
 
-  useEffect(() => {
-    document.getElementById('music').play();
-  });
 
   function handleKeyPress(event) {
     const key = event.key;
