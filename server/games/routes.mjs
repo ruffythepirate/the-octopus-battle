@@ -1,4 +1,5 @@
-const router = require('express').Router();
+import { Router } from 'express';
+const router = Router();
 
 import { joinGame } from './gameService';
 
@@ -7,4 +8,4 @@ router.post('/online-players', (req, res) => {
     res.json(game);
 });
 
-module.exports = router;
+export default router;

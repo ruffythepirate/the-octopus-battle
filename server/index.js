@@ -1,4 +1,4 @@
-const gameport = process.env.PORT || 3000,
+const gameport = process.env.PORT || 3030,
 
 io = require('socket.io'),
 express = require('express'),
@@ -32,6 +32,8 @@ function startListening() {
 function setupExpressServer() {
     app = express();
     server = require('http').Server(app);
+
+    app.use('/games', require('./games/routes'));
 
     //By default, we forward the / path to index.html automatically.
     app.get('/', function(req, res) {

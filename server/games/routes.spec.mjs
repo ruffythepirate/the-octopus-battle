@@ -1,9 +1,11 @@
 import request from 'supertest';
 import express from  'express' ;
-import { cleanGames } from  './gameService' ;
+import { cleanGames } from  './gameService.mjs' ;
+
+import routes from  './routes.mjs' ;
 
 let app = express();
-app.use('/games', require('./routes'));
+app.use('/games', routes);
 
 describe("games routes", () => {
     beforeEach(() => {
