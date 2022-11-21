@@ -4,12 +4,17 @@
   "description": "This is the server for the octopus battle project.",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "npx jest",
+    "test:watch": "npx jest --watchAll",
     "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ruffythepirate/the-octopus-battle.git"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testRegex": ".spec\\.js$"
   },
   "keywords": [
     "server"
@@ -23,6 +28,11 @@
   "dependencies": {
     "express": "^4.16.2",
     "node-uuid": "^1.4.8",
-    "socket.io": "^2.0.4"
+    "socket.io": "^2.0.4",
+    "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.19.6",
+    "jest": "^29.3.1"
   }
 }
