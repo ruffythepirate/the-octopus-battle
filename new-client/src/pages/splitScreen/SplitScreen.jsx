@@ -15,8 +15,6 @@ const GAME_CONSTANTS = require('../../common/consts/gameConstants.js');
 
 export default function SplitScreen({handleExit}) {
 
-
-
   function handleKeyPress(event) {
     const key = event.key;
     if(key === 'Escape') {

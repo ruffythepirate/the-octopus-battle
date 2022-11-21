@@ -14,6 +14,8 @@ const keyMap = {};
 
 const GAME_CONSTANTS = require('../../common/consts/gameConstants.js');
 
+import { io } from 'socket.io-client';
+
 export default function JoinOnline({handleExit}) {
 
   function handleKeyPress(event) {
@@ -23,7 +25,15 @@ export default function JoinOnline({handleExit}) {
     }
   }
 
+  let socket = undefined;
+
   useEffect(() => {
+
+    socket = io('http://localhost:3030');
+
+    socket.on('connect', () => {
+      console.log('connected');
+    });
 
   }, []);
 
