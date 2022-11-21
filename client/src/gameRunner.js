@@ -1,4 +1,5 @@
 const game = require('../../common/game');
+import KEY from '../../common/consts/keyCodes.js';
 
 export default function GameRunner(gameCanvas, players, checkWinCondition, keyMap) {
   const GAME_CONSTANTS = require('../../common/consts/gameConstants.js');
@@ -8,22 +9,6 @@ export default function GameRunner(gameCanvas, players, checkWinCondition, keyMa
   const Crate = require('../../common/crate.js');
 
   const PadCollector = require('./gamepad-collector.js');
-
-
-
-  const KEY = {
-    LEFT: 37,
-    UP: 38,
-    RIGHT: 39,
-    DOWN: 40,
-    ALT: 18,
-    CTRL: 17,
-    A: 65,
-    W: 87,
-    D: 68,
-    S: 83,
-    F: 70,
-  };
 
   var astreoids = [
     'resources/astreoid.png',

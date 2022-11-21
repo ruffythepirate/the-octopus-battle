@@ -17,10 +17,12 @@ function App() {
         return <Practice handleExit={handleExit} />;
       case '2 Players':
         return <SplitScreen handleExit={handleExit} />;
+      case 'Join Online':
+        return <SplitScreen handleExit={handleExit} />;
       case 'Instructions':
         return <Instructions handleExit={handleExit} />;
       default:
-        const menuItems = ["Practice", "2 Players", "Instructions", "Credits"];
+        const menuItems = ["Practice", "2 Players", "Join Online", "Instructions", "Credits"];
         return <Menu menuItems={menuItems} handleItemClicked={handleItemClicked} />;
     }
   }

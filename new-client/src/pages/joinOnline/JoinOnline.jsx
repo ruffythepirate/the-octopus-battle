@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
-import './splitScreen.css';
+
+import './practice.css';
+import GameRunner from '../../common/gameRunner.js';
 import playerColors from '../../common/playerColors.js';
 
 import KEY from '../../common/consts/keyCodes.js';
 
-import GameRunner from '../../common/gameRunner.js';
 const Player = require('../../common/player.js');
 const Controls = require('../../common/controls.js');
 const Crate = require('../../common/crate.js');
@@ -13,9 +14,7 @@ const keyMap = {};
 
 const GAME_CONSTANTS = require('../../common/consts/gameConstants.js');
 
-export default function SplitScreen({handleExit}) {
-
-
+export default function JoinOnline({handleExit}) {
 
   function handleKeyPress(event) {
     const key = event.key;
@@ -23,6 +22,10 @@ export default function SplitScreen({handleExit}) {
       handleExit();
     }
   }
+
+  useEffect(() => {
+
+  }, []);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyPress);
@@ -57,24 +60,6 @@ export default function SplitScreen({handleExit}) {
         keyboardOneJoined = true;
       }
     }
-
-    let keyboardTwoJoined = false;
-    function joinKeyboardTwo() {
-      if(!keyboardTwoJoined) {
-        var player2 = createPlayer();
-        var secondControls = new Controls(player2, [
-          {key: KEY.A, value:'left'},
-          {key: KEY.W, value:'up'},
-          {key: KEY.D, value:'right'},
-          {key: KEY.S, value:'down'},
-          {key: KEY.F, value:'release'}
-        ]);
-        secondControls.registerControls(keyMap);
-        players.push(player2);
-        keyboardTwoJoined = true;
-      }
-    }
-
     function createPlayer(controls) {
       return new Player(50, 100, playerColors[players.length], controls);
     }
@@ -84,9 +69,9 @@ export default function SplitScreen({handleExit}) {
     }
 
     joinKeyboardOne();
-    joinKeyboardTwo();
     const gameRunner = new GameRunner(canvas, players, checkWinCondition, keyMap);
     gameRunner.startGame();
+
   });
 
 return (<div id="overlay" className="fullSize">
