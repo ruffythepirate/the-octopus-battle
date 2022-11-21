@@ -1,7 +1,10 @@
 const router = require('express').Router();
 
-router.post('/online-players', (req, res) => {
+import { joinGame } from './gameService';
 
+router.post('/online-players', (req, res) => {
+    let game = joinGame();
+    res.json(game);
 });
 
 module.exports = router;
