@@ -4,6 +4,7 @@ import Menu from './pages/menu/Menu';
 import Practice from './pages/practice/Practice';
 import { useState, useEffect } from "react";
 import SplitScreen from './pages/splitScreen/SplitScreen';
+import Instructions from './pages/instructions/Instructions';
 
 function App() {
   const [selectedPage, setSelectedPage] = useState('Menu');
@@ -16,8 +17,10 @@ function App() {
         return <Practice handleExit={handleExit} />;
       case '2 Players':
         return <SplitScreen handleExit={handleExit} />;
+      case 'Instructions':
+        return <Instructions handleExit={handleExit} />;
       default:
-        const menuItems = ["Practice", "2 Players", "Instuctions", "Credits"];
+        const menuItems = ["Practice", "2 Players", "Instructions", "Credits"];
         return <Menu menuItems={menuItems} handleItemClicked={handleItemClicked} />;
     }
   }

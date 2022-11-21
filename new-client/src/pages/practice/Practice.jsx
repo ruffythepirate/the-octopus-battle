@@ -14,6 +14,7 @@ const KEY = {
   DOWN: 40,
   ALT: 18,
   CTRL: 17,
+  SPACE: 32,
   A: 65,
   W: 87,
   D: 68,
@@ -66,7 +67,7 @@ export default function Practice({handleExit}) {
           {key: KEY.UP, value:'up'},
           {key: KEY.RIGHT, value:'right'},
           {key: KEY.DOWN, value:'down'},
-          {key: KEY.CTRL, value:'release'}
+          {key: KEY.SPACE, value:'release'}
         ]);
         players.push(player);
 
