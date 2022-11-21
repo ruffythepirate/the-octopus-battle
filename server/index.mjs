@@ -1,8 +1,11 @@
-const gameport = process.env.PORT || 3030,
+import io from 'socket.io';
+import express from 'express';
+import UUID from 'node-uuid';
+import gameRoutes from './games/routes.mjs';
+import http from 'http';
 
-io = require('socket.io'),
-express = require('express'),
-UUID = require('node-uuid');
+const gameport = process.env.PORT || 3030
+
 
 const logLevel = {
         verbose: true,
@@ -15,6 +18,7 @@ let app = null,
 setupExpressServer();
 setupSocketIO();
 startListening();
+
 
 function log(level, message) {
     if (logLevel[level]) {
@@ -31,9 +35,9 @@ function startListening() {
 
 function setupExpressServer() {
     app = express();
-    server = require('http').Server(app);
+    server = http.Server(app);
 
-    app.use('/games', require('./games/routes'));
+    app.use('/games', gameRoutes);
 
     //By default, we forward the / path to index.html automatically.
     app.get('/', function(req, res) {
