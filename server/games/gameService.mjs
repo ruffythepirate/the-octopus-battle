@@ -8,12 +8,12 @@ export function cleanGames() {
     games = [];
 }
 
-export function joinGame() {
+export function joinGame(user) {
     let game = games.find(game => game.players.length < 6);
     if(!game) {
         game = new Game();
         games.push(game);
     }
-    game.addPlayer();
+    game.addPlayer(user);
     return game;
 }

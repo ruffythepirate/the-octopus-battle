@@ -2,6 +2,8 @@ import { Server } from 'socket.io';
 import UUID from 'node-uuid';
 import logger from '../logger.mjs';
 
+import { joinGame } from './gameService.mjs';
+
 
 export function setupSocketIO(server) {
     console.log('Setting up socket.io..')
@@ -18,7 +20,10 @@ export function setupSocketIO(server) {
         }, 1000);
         const user = {
             id: UUID.v4(),
+            socket: socket
         }
+
+        joinGame(user);
 
         logger.info('socket.io: player ' + user.id + ' connected')
         socket.emit('', user);
