@@ -1,8 +1,7 @@
-import io from 'socket.io';
 import express from 'express';
-import UUID from 'node-uuid';
 import gameRoutes from './games/routes.mjs';
 import http from 'http';
+import { setupSocketIO } from './games/socketController.mjs';
 
 const gameport = process.env.PORT || 3030
 
@@ -16,7 +15,7 @@ let app = null,
     server = null;
 
 setupExpressServer();
-setupSocketIO();
+setupSocketIO(server);
 startListening();
 
 
@@ -52,19 +51,3 @@ function setupExpressServer() {
     });
 }
 
-function setupSocketIO() {
-    console.log('Setting upp socket.io..')
-    var sio = io(server);
-
-    sio.sockets.on('connection', function(client) {
-        client.userid = UUID();
-        client.emit('onconnected', {
-            id: client.userid
-        });
-        log('info', 'socket.io: player ' + client.userid + ' connected')
-
-        client.on('disconnect', function() {
-            log('info', 'socket.io: client disconnected ' + client.userid)
-        });
-    });
-}

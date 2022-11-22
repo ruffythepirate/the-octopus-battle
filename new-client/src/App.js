@@ -5,6 +5,7 @@ import Practice from './pages/practice/Practice';
 import { useState, useEffect } from "react";
 import SplitScreen from './pages/splitScreen/SplitScreen';
 import Instructions from './pages/instructions/Instructions';
+import JoinOnline from './pages/joinOnline/JoinOnline';
 
 function App() {
   const [selectedPage, setSelectedPage] = useState('Menu');
@@ -18,7 +19,7 @@ function App() {
       case '2 Players':
         return <SplitScreen handleExit={handleExit} />;
       case 'Join Online':
-        return <SplitScreen handleExit={handleExit} />;
+        return <JoinOnline handleExit={handleExit} />;
       case 'Instructions':
         return <Instructions handleExit={handleExit} />;
       default:

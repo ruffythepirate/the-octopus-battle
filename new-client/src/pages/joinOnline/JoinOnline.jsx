@@ -1,10 +1,8 @@
 import { useEffect } from 'react';
-
-import './practice.css';
 import GameRunner from '../../common/gameRunner.js';
-import playerColors from '../../common/playerColors.js';
-
+import playerColors from '../../common/consts/playerColors.js';
 import KEY from '../../common/consts/keyCodes.js';
+import { io } from 'socket.io-client';
 
 const Player = require('../../common/player.js');
 const Controls = require('../../common/controls.js');
@@ -14,7 +12,6 @@ const keyMap = {};
 
 const GAME_CONSTANTS = require('../../common/consts/gameConstants.js');
 
-import { io } from 'socket.io-client';
 
 export default function JoinOnline({handleExit}) {
 
@@ -28,13 +25,21 @@ export default function JoinOnline({handleExit}) {
   let socket = undefined;
 
   useEffect(() => {
-
+    console.log("JoinOnline useEffect");
     socket = io('http://localhost:3030');
 
-    socket.on('connect', () => {
-      console.log('connected');
+    socket.on('connected', (player) => {
+      console.log('connected', player);
     });
 
+    socket.on('events', (event) => {
+    });
+
+
+    return () => {
+      console.log("JoinOnline useEffect cleanup");
+      socket.disconnect();
+    }
   }, []);
 
   useEffect(() => {
