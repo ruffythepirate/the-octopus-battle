@@ -1,6 +1,9 @@
 import { v4 as uuid } from 'uuid';
 
 export default class Game {
+    players: any[];
+    id: string;
+
     constructor() {
         this.players = [];
         this.id = uuid();

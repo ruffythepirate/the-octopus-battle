@@ -1,7 +1,7 @@
 import { Router } from 'express';
 const router = Router();
 
-import { joinGame } from './gameService.mjs';
+import { joinGame } from './gameService';
 
 router.post('/online-players', (req, res) => {
     let game = joinGame();

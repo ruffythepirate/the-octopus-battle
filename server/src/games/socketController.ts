@@ -1,8 +1,8 @@
 import { Server } from 'socket.io';
 import UUID from 'node-uuid';
-import logger from '../logger.mjs';
+import logger from '../logger';
 
-import { joinGame } from './gameService.mjs';
+import { joinGame } from './gameService';
 
 
 export function setupSocketIO(server) {
@@ -23,7 +23,7 @@ export function setupSocketIO(server) {
             socket: socket
         }
 
-        const game = joinGame(user);
+        const game = joinGame();
 
         logger.info('socket.io: player ' + user.id + ' connected')
         socket.on('state', function(socket, ackFn) {

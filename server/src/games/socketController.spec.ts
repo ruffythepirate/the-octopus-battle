@@ -1,4 +1,4 @@
-import { setupSocketIO } from "./socketController.mjs";
+import { setupSocketIO } from "./socketController";
 import Client from "socket.io-client";
 import { createServer } from "http";
 
@@ -9,9 +9,10 @@ describe('socketController', () => {
     beforeAll((done) => {
         const httpServer = createServer();
         httpServer.listen(() => {
-            const port = httpServer.address().port;
+            const address = httpServer.address() as any;
+            const port = address.port;
             io = setupSocketIO(httpServer);
-            clientSocket = new Client(`http://localhost:${port}`);
+            clientSocket = Client(`http://localhost:${port}`);
             clientSocket.on("connect", () => {
                 serverSocket = io.sockets.sockets[clientSocket.id];
                 done();

@@ -1,19 +1,19 @@
-import Game from './Game.mjs';
+import Game from './Game';
 
 
 
-let games = [];
+let games: Game[] = [];
 
 export function cleanGames() {
     games = [];
 }
 
-export function joinGame(user) {
+export function joinGame(): Game {
     let game = games.find(game => game.players.length < 6);
     if(!game) {
         game = new Game();
         games.push(game);
     }
-    game.addPlayer(user);
+    game.addPlayer();
     return game;
 }

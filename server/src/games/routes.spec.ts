@@ -1,8 +1,8 @@
 import request from 'supertest';
 import express from  'express' ;
-import { cleanGames } from  './gameService.mjs' ;
+import { cleanGames } from  './gameService' ;
 
-import routes from  './routes.mjs' ;
+import routes from  './routes' ;
 
 let app = express();
 app.use('/games', routes);

@@ -1,29 +1,26 @@
 import express from 'express';
-import gameRoutes from './games/routes.mjs';
+import gameRoutes from './games/routes';
 import http from 'http';
-import { setupSocketIO } from './games/socketController.mjs';
+import { setupSocketIO } from './games/socketController';
 
-import logger from './logger.mjs';
+import logger from './logger';
 
 const gameport = process.env.PORT || 3030
 
-let app = null;
+let app = express();
 
-const server = setupExpressServer();
+const server = setupExpressServer(app);
 setupSocketIO(server);
 startListening();
 
 
 function startListening() {
-
     server.listen(gameport);
     logger.info('Express: Listening on port ' + gameport);
-
 }
 
-function setupExpressServer() {
-    app = express();
-    const server = http.Server(app);
+function setupExpressServer(app) {
+    const server = new http.Server(app);
 
     app.use('/games', gameRoutes);
 
@@ -34,7 +31,7 @@ function setupExpressServer() {
 
     app.get('/*', function(req, res, next) {
         var file = req.params[0];
-        logger.verbose('Express: file requested : ' + file);
+        logger.debug('Express: file requested : ' + file);
         res.sendFile(__dirname + '/' + file);
 
     });
