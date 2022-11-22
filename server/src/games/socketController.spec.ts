@@ -26,8 +26,8 @@ describe('socketController', () => {
     });
 
     it('should respond to state request', (done) => {
-
-        clientSocket.emit('state', (state) => {
+        clientSocket.emit('state', {}, (state) => {
+            console.log('state', state);
             expect(state).toBeDefined();
             done();
         });
