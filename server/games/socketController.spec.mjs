@@ -1,8 +1,6 @@
 import { setupSocketIO } from "./socketController.mjs";
 import Client from "socket.io-client";
 import { createServer } from "http";
-import { Server } from 'socket.io';
-
 
 describe('socketController', () => {
 
@@ -12,8 +10,7 @@ describe('socketController', () => {
         const httpServer = createServer();
         httpServer.listen(() => {
             const port = httpServer.address().port;
-            io = new Server(httpServer);
-            setupSocketIO(io);
+            io = setupSocketIO(httpServer);
             clientSocket = new Client(`http://localhost:${port}`);
             clientSocket.on("connect", () => {
                 serverSocket = io.sockets.sockets[clientSocket.id];
@@ -28,7 +25,11 @@ describe('socketController', () => {
     });
 
     it('should respond to state request', (done) => {
-        done();
+
+        clientSocket.emit('state', (state) => {
+            expect(state).toBeDefined();
+            done();
+        });
     });
 
     it('should join 2nd player to same game', (done) => {

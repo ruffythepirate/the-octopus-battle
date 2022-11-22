@@ -6,8 +6,8 @@ import { joinGame } from './gameService.mjs';
 
 
 export function setupSocketIO(server) {
-    console.log('Setting up socket.io..')
-    var sio = new Server(server, {
+    logger.info('Setting up socket.io..')
+    const sio = new Server(server, {
         cors: {
             origin: '*',
             methods: ['GET', 'POST']
@@ -23,14 +23,19 @@ export function setupSocketIO(server) {
             socket: socket
         }
 
-        joinGame(user);
+        const game = joinGame(user);
 
         logger.info('socket.io: player ' + user.id + ' connected')
-        socket.emit('', user);
+        socket.on('state', function(socket, ackFn) {
+            logger.info(`socket.io: player ${user.id} requested state`)
+            logger.info(`ackFn: ${ackFn}. game: ${game}`)
+            ackFn(game);
+        });
 
         socket.on('disconnect', function() {
             logger.info('socket.io: player ' + user.id + ' disconnected')
             clearInterval(handle);
         });
     });
+    return sio;
 }

@@ -7,10 +7,9 @@ import logger from './logger.mjs';
 
 const gameport = process.env.PORT || 3030
 
-let app = null,
-    server = null;
+let app = null;
 
-setupExpressServer();
+const server = setupExpressServer();
 setupSocketIO(server);
 startListening();
 
@@ -24,7 +23,7 @@ function startListening() {
 
 function setupExpressServer() {
     app = express();
-    server = http.Server(app);
+    const server = http.Server(app);
 
     app.use('/games', gameRoutes);
 
@@ -39,5 +38,7 @@ function setupExpressServer() {
         res.sendFile(__dirname + '/' + file);
 
     });
+
+    return server;
 }
 

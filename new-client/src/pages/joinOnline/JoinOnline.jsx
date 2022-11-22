@@ -32,7 +32,13 @@ export default function JoinOnline({handleExit}) {
       console.log('connected', player);
     });
 
-    socket.on('events', (event) => {
+    console.log('Sending request to get state...');
+    socket.emit('state', {}, function(state) {
+      console.log('state', state);
+    });
+
+    socket.on('state', (event) => {
+      console.log('state', event);
     });
 
 
