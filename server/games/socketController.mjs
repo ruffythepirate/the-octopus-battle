@@ -1,16 +1,7 @@
 import { Server } from 'socket.io';
 import UUID from 'node-uuid';
+import logger from '../logger.mjs';
 
-const logLevel = {
-        verbose: true,
-        info: true
-    };
-
-function log(level, message) {
-    if (logLevel[level]) {
-        console.log(message);
-    }
-}
 
 export function setupSocketIO(server) {
     console.log('Setting up socket.io..')
@@ -29,14 +20,12 @@ export function setupSocketIO(server) {
             id: UUID.v4(),
         }
 
-        log('info', 'socket.io: player ' + user.id + ' connected')
+        logger.info('socket.io: player ' + user.id + ' connected')
         socket.emit('', user);
 
         socket.on('disconnect', function() {
-            log('info', 'socket.io: client disconnected ' + socket.userid)
+            logger.info('socket.io: player ' + user.id + ' disconnected')
             clearInterval(handle);
         });
     });
-
 }
-
