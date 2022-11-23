@@ -1,6 +1,7 @@
 import { setupSocketIO } from "./socketController";
 import Client from "socket.io-client";
 import { createServer } from "http";
+import { cleanGames } from "./gameService";
 
 describe('socketController', () => {
 
@@ -14,6 +15,10 @@ describe('socketController', () => {
             io = setupSocketIO(httpServer);
             done();
         });
+    });
+
+    beforeEach(() => {
+        cleanGames();
     });
 
     async function connectClientSocket(port): Promise<any> {
@@ -38,18 +43,22 @@ describe('socketController', () => {
                 resolve({});
             })
         });
-        clientSocket.close();
+        await clientSocket.close();
     });
 
     it('should join 2nd player to same game', async () => {
         const firstClientSocket = await connectClientSocket(port)
         const secondClientSocket = await connectClientSocket(port)
 
-        await new Promise((resolve) => {
+        await new Promise((resolve, reject) => {
             secondClientSocket.emit('state', {}, (state) => {
-                console.log('state', state);
-                expect(state.players.length).toBe(2);
-                resolve({});
+                try {
+                    console.log('state', state);
+                    expect(state.players.length).toBe(2);
+                    resolve({});
+                } catch (e) {
+                    reject(e);
+                }
             })
         });
 

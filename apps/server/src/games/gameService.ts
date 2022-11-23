@@ -13,5 +13,6 @@ export function joinGame(): Game {
         game = new Game();
         games.push(game);
     }
+    game.addPlayer();
     return game;
 }

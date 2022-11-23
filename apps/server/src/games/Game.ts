@@ -8,6 +8,10 @@ export default class Game {
         this.players = [];
         this.id = uuid();
     }
+
+    removePlayer(playerId) {
+        this.players = this.players.filter(player => player.id !== playerId);
+    }
     
     addPlayer() {
         const player = {

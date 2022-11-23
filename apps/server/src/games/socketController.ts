@@ -30,6 +30,7 @@ export function setupSocketIO(server) {
 
         socket.on('disconnect', function() {
             logger.info(`socket.io: player ${user.id} disconnected`)
+            game.removePlayer(user.id);
         });
     });
     return sio;
