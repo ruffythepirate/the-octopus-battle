@@ -4,5 +4,9 @@
     "packages/*",
     "apps/*"
   ],
-  "packageManager": "npm@7.6.3"
+  "packageManager": "npm@7.6.3",
+  "scripts": {
+    "build": "npx turbo run build",
+    "test": "npx turbo run test"
+  }
 }
