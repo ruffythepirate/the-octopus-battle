@@ -1,0 +1,4 @@
+
+> the-octopus-battle-server@1.0.0 build
+> npx rimraf build && npx tsc
+

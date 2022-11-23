@@ -1,12 +1,13 @@
-import { GameDto } from '../../../common/src/dtos/gameDto';
 
-let games: GameDto[] = [];
+import Game from './Game';
+
+let games: Game[] = [];
 
 export function cleanGames() {
     games = [];
 }
 
-export function getAvailableGame(): GameDto {
+export function joinGame(): Game {
     let game = games.find(game => game.players.length < 6);
     if(!game) {
         game = new Game();

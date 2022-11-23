@@ -3,5 +3,6 @@
   "workspaces": [
     "packages/*",
     "apps/*"
-  ]
+  ],
+  "packageManager": "npm@7.6.3"
 }
