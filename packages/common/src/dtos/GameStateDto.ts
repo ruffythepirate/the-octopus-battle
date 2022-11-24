@@ -8,4 +8,9 @@ import PlayerDto from "./PlayerDto";
 export default class GameStateDto {
   astroids: AstroidDto[];
   players: PlayerDto[];
+
+  constructor() {
+    this.astroids = [];
+    this.players = [];
+  }
 }

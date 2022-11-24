@@ -14,30 +14,35 @@ export default class PlayerDto {
   /**
    * The x coordinate of the player
    */
-  x: number;
+  x: number = 0.0;
   /**
    * The y coordinate of the player
    */
-  y: number;
+  y: number = 0.0;
   /**
    * The x velocity of the player
    */
-  vx: number;
+  vx: number = 0.0;
   /**
    * The y velocity of the player
    */
-  vy: number;
+  vy: number = 0.0;
   /**
    * The x acceleration of the player
    */
-  ax: number;
+  ax: number = 0.0;
   /**
    * The y acceleration of the player
    */
-  ay: number;
+  ay: number = 0.0;
 
   /**
    * The player's rope.
    */
-  rope: RopeDto;
+  rope: RopeDto = new RopeDto();
+
+  constructor(id: number) {
+    this.id = id;
+
+  }
 }

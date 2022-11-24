@@ -1,4 +1,4 @@
-const GAME_CONSTANTS = {
+export const GAME_CONSTANTS = {
   g: 0.08,        //gravity acceleration
   vFriction: 0.99,    //vertical friction factor
   hFriction: 0.99,  //horizontal friction factor
@@ -12,4 +12,5 @@ const GAME_CONSTANTS = {
   damagePerHit: 20
 };
 
-module.exports = GAME_CONSTANTS;
+export const MAX_ONLINE_PLAYERS = 6;
+
