@@ -13,4 +13,8 @@ export class GameStateDto {
     this.astroids = [];
     this.players = [];
   }
+
+  addPlayer(player: PlayerDto) {
+    this.players.push(player);
+  }
 }

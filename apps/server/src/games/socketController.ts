@@ -20,7 +20,8 @@ export function setupSocketIO(server) {
             socket: socket
         }
 
-        const game = gameService.joinGame();
+        const game = gameService.getOrCreateAvailableGame();
+        game.addPlayer(user);
 
         logger.info('socket.io: player ' + user.id + ' connected')
         socket.on('state', function(socket, ackFn) {
