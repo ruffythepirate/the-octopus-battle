@@ -1,7 +1,7 @@
 import { setupSocketIO } from "./socketController";
 import Client from "socket.io-client";
 import { createServer } from "http";
-import { cleanGames } from "./gameService";
+import gameService from "./gameService";
 
 describe('socketController', () => {
 
@@ -18,7 +18,7 @@ describe('socketController', () => {
     });
 
     beforeEach(() => {
-        cleanGames();
+        gameService.clearGames();
     });
 
     async function connectClientSocket(port): Promise<any> {

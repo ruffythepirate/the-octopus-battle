@@ -31,6 +31,6 @@ class ParticleDto {
     }
 }
 
-export default class RopeDto {
+export class RopeDto {
     particles: ParticleDto[] = [];
 }

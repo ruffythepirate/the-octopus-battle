@@ -1,17 +1,17 @@
 {
-  "name": "common",
+  "name": "@the-octopus-battle/common",
   "version": "1.0.0",
   "private": true,
   "sideEffects": false,
   "description": "",
   "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "types": "build/index.d.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest src",
     "lint": "npx eslint . --ext .ts",
     "lint:fix": "npx eslint . --ext .ts --fix",
-    "build": "npx rimraf build && npx tsc",
-    "build:watch": "npx tsc --watch"
+    "build": "npx tsc -b",
+    "build:watch": "npx tsc -b --watch"
   },
   "devDependencies": {
     "@types/jest": "^29.0.0",

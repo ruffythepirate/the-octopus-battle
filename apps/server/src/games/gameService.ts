@@ -1,18 +1,43 @@
 
 import Game from './Game';
 
-let games: Game[] = [];
+import { GameStateDto } from '@the-octopus-battle/common';
 
-export function cleanGames() {
-    games = [];
-}
+import { MAX_ONLINE_PLAYERS } from '@the-octopus-battle/common';
 
-export function joinGame(): Game {
-    let game = games.find(game => game.players.length < 6);
-    if(!game) {
-        game = new Game();
-        games.push(game);
+class GameService {
+    games: Game[];
+    gameDtos: GameStateDto[];
+
+    constructor() {
+        this.games = [];
+        this.gameDtos = [];
     }
-    game.addPlayer();
-    return game;
+
+    clearGames() {
+        this.games = [];
+        this.gameDtos = [];
+    }
+
+    joinGame(): Game {
+        let game = this.games.find(game => game.players.length < MAX_ONLINE_PLAYERS);
+        if (!game) {
+            game = new Game();
+            this.games.push(game);
+        }
+        game.addPlayer();
+        return game;
+    }
+
+    getOrCreateAvailableGame(): GameStateDto | undefined {
+        let gameDto = this.gameDtos.find((gameDto) => gameDto.players.length < MAX_ONLINE_PLAYERS);
+
+        if (!gameDto) {
+            gameDto = new GameStateDto();
+            this.gameDtos.push(gameDto);
+        }
+        return gameDto;
+    }
 }
+
+export default new GameService();

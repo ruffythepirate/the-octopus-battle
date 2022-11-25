@@ -1,6 +1,6 @@
 import { AstroidState } from "../consts/AstroidEnum";
 
-export default class AstroidDto {
+export class AstroidDto {
   x: number;
 
   y: number;

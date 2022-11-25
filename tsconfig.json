@@ -16,8 +16,5 @@
     "declarationMap": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"],
-  "references": [
-    { "path": "../../packages/common" }
-  ]
+  "exclude": ["node_modules"]
 }

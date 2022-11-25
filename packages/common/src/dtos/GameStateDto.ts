@@ -1,11 +1,11 @@
-import AstroidDto from "./AstroidDto";
-import PlayerDto from "./PlayerDto";
+import { AstroidDto } from "./AstroidDto";
+import { PlayerDto } from "./PlayerDto";
 
 
 /**
  * Dto that contains the current state of the game. 
 **/
-export default class GameStateDto {
+export class GameStateDto {
   astroids: AstroidDto[];
   players: PlayerDto[];
 

@@ -1,4 +1,5 @@
 {
+  "name": "the-octopus-battle",
   "private": true,
   "workspaces": [
     "packages/*",

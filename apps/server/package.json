@@ -1,5 +1,5 @@
 {
-  "name": "the-octopus-battle-server",
+  "name": "@the-octopus-battle/server",
   "version": "1.0.0",
   "description": "This is the server for the octopus battle project.",
   "main": "index.js",
@@ -7,7 +7,8 @@
     "docs": "npx typedoc src",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules npx jest --watchAll",
-    "build": "npx rimraf build && npx tsc"
+    "build": "npx rimraf build && npx tsc",
+    "build:watch": "npx tsc --watch"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/ruffythepirate/the-octopus-battle#readme",
   "dependencies": {
+    "@the-octopus-battle/common": "*",
     "express": "^4.16.2",
     "node-uuid": "^1.4.8",
     "pino": "^8.7.0",

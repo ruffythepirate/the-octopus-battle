@@ -1,6 +1,6 @@
 import request from 'supertest';
 import express from  'express' ;
-import { cleanGames } from  './gameService' ;
+import gameService from  './gameService' ;
 
 import routes from  './routes' ;
 
@@ -9,7 +9,7 @@ app.use('/games', routes);
 
 describe("games routes", () => {
     beforeEach(() => {
-        cleanGames();
+        gameService.clearGames();
     });
 
     describe("POST /games/online-players", () => {

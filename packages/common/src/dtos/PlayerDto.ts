@@ -1,9 +1,9 @@
-import RopeDto from './RopeDto';
+import { RopeDto } from './RopeDto';
 
 /**
  * DTO class that represents an active player in the game. This is the necessary information to know where a player should be rendered.
  */
-export default class PlayerDto {
+export class PlayerDto {
   /**
    * The player's unique id.
    * @type {number}

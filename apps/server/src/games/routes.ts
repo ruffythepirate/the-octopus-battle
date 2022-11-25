@@ -1,10 +1,10 @@
 import { Router } from 'express';
 const router = Router();
 
-import { joinGame } from './gameService';
+import gameService from './gameService';
 
 router.post('/online-players', (req, res) => {
-    let game = joinGame();
+    let game = gameService.joinGame();
     res.json(game);
 });
 
