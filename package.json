@@ -8,6 +8,7 @@
   "packageManager": "npm@7.6.3",
   "scripts": {
     "build": "npx turbo run build",
-    "test": "npx turbo run test"
+    "test": "npx turbo run test",
+    "start": "npx turbo run start"
   }
 }

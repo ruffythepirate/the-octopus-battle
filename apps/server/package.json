@@ -2,13 +2,15 @@
   "name": "@the-octopus-battle/server",
   "version": "1.0.0",
   "description": "This is the server for the octopus battle project.",
-  "main": "index.js",
+  "main": "build/index.js",
+  "types": "build/index.d.js",
   "scripts": {
     "docs": "npx typedoc src",
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules npx jest --watchAll",
-    "build": "npx rimraf build && npx tsc",
-    "build:watch": "npx tsc --watch"
+    "start": "node build/index.js",
+    "build": "npx tsc -b -f",
+    "build:watch": "npx tsc -b --watch"
   },
   "repository": {
     "type": "git",

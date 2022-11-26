@@ -17,7 +17,7 @@ class GameService {
     }
 
     getOrCreateAvailableGame(): Game {
-        let game = this.games.find((game) => game.players.length < MAX_ONLINE_PLAYERS);
+        let game = this.games.find((game) => game.getNumPlayers() < MAX_ONLINE_PLAYERS);
 
         if (!game) {
             game = new Game();

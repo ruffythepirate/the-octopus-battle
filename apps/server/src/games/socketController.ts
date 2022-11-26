@@ -23,6 +23,10 @@ export function setupSocketIO(server) {
         const game = gameService.getOrCreateAvailableGame();
         game.addPlayer(user);
 
+        const timerHandle = setInterval(() => {
+            socket.emit('state', game.getGameState());
+        }, 2000);
+
         logger.info('socket.io: player ' + user.id + ' connected')
         socket.on('state', function(socket, ackFn) {
             logger.info(`socket.io: player ${user.id} requested state`)
@@ -32,6 +36,7 @@ export function setupSocketIO(server) {
         socket.on('disconnect', function() {
             logger.info(`socket.io: player ${user.id} disconnected`)
             game.removePlayer(user.id);
+            clearInterval(timerHandle);
         });
     });
     return sio;

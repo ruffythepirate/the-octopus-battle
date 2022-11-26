@@ -11,7 +11,7 @@
     "test:watch": "npx jest src --watchAll",
     "lint": "npx eslint . --ext .ts",
     "lint:fix": "npx eslint . --ext .ts --fix",
-    "build": "npx tsc -b",
+    "build": "npx tsc -b -f",
     "build:watch": "npx tsc -b --watch"
   },
   "devDependencies": {

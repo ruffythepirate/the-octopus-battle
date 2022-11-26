@@ -16,5 +16,10 @@ describe('Game', () => {
         game.addPlayer(() => {});
         expect(game.gameState.players.length).toBe(1);
     });
-    
+
+    it('should remove player when calling leave', () => {
+        const player = game.addPlayer(() => {});
+        game.removePlayer(player.id);
+        expect(game.gameState.players.length).toBe(0);
+    });
 });

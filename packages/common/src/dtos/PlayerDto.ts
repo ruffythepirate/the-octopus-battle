@@ -1,4 +1,6 @@
+import {PlayerControls, applyControlEvent} from './PlayerControls';
 import { RopeDto } from './RopeDto';
+import { PlayerControlsEventDto } from './GameEventDto';
 
 /**
  * DTO class that represents an active player in the game. This is the necessary information to know where a player should be rendered.
@@ -36,6 +38,8 @@ export class PlayerDto {
    */
   ay: number = 0.0;
 
+  controls: PlayerControls = new PlayerControls();
+
   /**
    * The player's rope.
    */
@@ -43,6 +47,9 @@ export class PlayerDto {
 
   constructor(id: number) {
     this.id = id;
+  }
 
+  applyControlEvent(event: PlayerControlsEventDto) {
+    this.controls = applyControlEvent(this.controls, event);
   }
 }
