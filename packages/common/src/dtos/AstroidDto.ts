@@ -19,7 +19,6 @@ export class AstroidDto {
   static fromEvent(event: AstroidSpawnedEventDto): AstroidDto {
     const astroid = new AstroidDto(event.x, event.y);
     astroid.id = event.astroidId;
-
     return astroid;
   }
 
