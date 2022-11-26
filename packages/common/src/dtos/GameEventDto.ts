@@ -3,8 +3,10 @@ export enum GameEventType {
   PLAYER_HIT = 0,
   ASTROID_SPAWNED = 1,
   PLAYER_ACTION = 2,
-  PLAYER_CONTROLS = 4,
   PICK_UP_ASTROID = 3,
+  PLAYER_CONTROLS = 4,
+  PLAYER_KILLED = 5,
+  PLAYER_RESPAWNED = 6,
 }
 
 export enum PlayerAction {
@@ -29,11 +31,29 @@ export class PlayerHitEventDto extends GameEventDto {
     public readonly playerId: number;
     public readonly astroidId: number;
 
-    constructor(playerId: number, astroidId: number, iteration: number) {
+    constructor(playerId: number, astroidId: number, iteration: number | undefined = undefined) {
         super(GameEventType.PLAYER_HIT, iteration);
         this.playerId = playerId;
         this.astroidId = astroidId;
     }
+}
+
+export class PlayerKilledEventDto extends GameEventDto {
+  public readonly playerId: number;
+
+  constructor(playerId: number, iteration: number | undefined = undefined) {
+    super(GameEventType.PLAYER_KILLED, iteration);
+    this.playerId = playerId;
+  }
+}
+
+export class PlayerRespawnedEventDto extends GameEventDto {
+  public readonly playerId: number;
+
+  constructor(playerId: number, iteration: number | undefined = undefined) {
+    super(GameEventType.PLAYER_RESPAWNED, iteration);
+    this.playerId = playerId;
+  }
 }
 
 export class AstroidSpawnedEventDto extends GameEventDto {
@@ -66,7 +86,7 @@ export class PickUpAstroidEventDto extends GameEventDto {
   public readonly playerId: number;
   public readonly astroidId: number;
 
-  constructor(playerId: number, astroidId: number, iteration: number) {
+  constructor(playerId: number, astroidId: number, iteration: number | undefined = undefined) {
     super(GameEventType.PICK_UP_ASTROID, iteration);
     this.playerId = playerId;
     this.astroidId = astroidId;

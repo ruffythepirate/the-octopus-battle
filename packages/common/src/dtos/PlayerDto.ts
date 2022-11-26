@@ -2,6 +2,12 @@ import {PlayerControls, applyControlEvent} from './PlayerControls';
 import { RopeDto } from './RopeDto';
 import { PlayerControlsEventDto } from './GameEventDto';
 
+export enum PlayerState {
+  Alive = 'Alive',
+  Dead = 'Dead',
+  JustHit = 'JustHit',
+}
+
 /**
  * DTO class that represents an active player in the game. This is the necessary information to know where a player should be rendered.
  */
@@ -37,6 +43,15 @@ export class PlayerDto {
    * The y acceleration of the player
    */
   ay: number = 0.0;
+
+  /**
+   * Represents the current state of the player
+   */
+  state: PlayerState = PlayerState.Alive;
+
+  health: number = 100;
+
+  carriedAstroid: number | null = null;
 
   controls: PlayerControls = new PlayerControls();
 
