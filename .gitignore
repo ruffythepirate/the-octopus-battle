@@ -4,3 +4,4 @@ output
 npm-debug.log
 .turbo
 build
+tsconfig.tsbuildinfo
