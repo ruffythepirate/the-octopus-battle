@@ -34,7 +34,7 @@ describe('socketController', () => {
         await io.close();
     });
 
-    it('should respond to state request', async () => {
+    xit('should respond to state request', async () => {
         const clientSocket = await connectClientSocket(port)
         await new Promise((resolve) => {
             clientSocket.emit('state', {}, (state) => {
@@ -46,7 +46,7 @@ describe('socketController', () => {
         await clientSocket.close();
     });
 
-    it('should join 2nd player to same game', async () => {
+    xit('should join 2nd player to same game', async () => {
         const firstClientSocket = await connectClientSocket(port)
         const secondClientSocket = await connectClientSocket(port)
 
