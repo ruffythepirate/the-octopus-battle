@@ -9,6 +9,8 @@ import { gameConstants } from './GameConstants';
 
 export class Game {
     eventObservers: EventObserver[] = [];
+
+    isRunning: boolean = false;
     gameState: GameStateDto;
 
     pendingEvents: GameEventDto[] = [];

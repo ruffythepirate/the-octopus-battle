@@ -4,8 +4,6 @@ import KEY from '../../common/consts/keyCodes.js';
 export default function GameRunner(gameCanvas, players, checkWinCondition, keyMap) {
   const GAME_CONSTANTS = require('../../common/consts/gameConstants.js');
 
-  const Player = require('../../common/player.js');
-  const Controls = require('../../common/controls.js');
   const Crate = require('../../common/crate.js');
 
   const PadCollector = require('./gamepad-collector.js');

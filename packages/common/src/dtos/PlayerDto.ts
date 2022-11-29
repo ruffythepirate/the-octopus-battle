@@ -19,6 +19,9 @@ export class PlayerDto {
    * @example 1
    */
   id: number;
+
+  color: string = 'red';
+
   /**
    * The x coordinate of the player
    */

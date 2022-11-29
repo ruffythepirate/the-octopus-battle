@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 
 import './practice.css';
-import GameRunner from '../../common/gameRunner.js';
-const Player = require('../../common/player.js');
+import GameRunner from '../../common/GameRunner.ts';
+import playerColors from '../../common/consts/playerColors';
+const PlayerDto = require('@the-octopus-battle/common').PlayerDto;
 const Controls = require('../../common/controls.js');
-const Crate = require('../../common/crate.js');
-const game = require('../../common/game.js');
 const keyMap = {};
 const KEY = {
   LEFT: 37,
@@ -21,17 +20,6 @@ const KEY = {
   S: 83,
   F: 70,
 };
-
-const playerColors = [
-    'yellow',
-    'orange',
-    'purple',
-    'lightblue',
-    'blue',
-    'maroon'
-];
-
-const GAME_CONSTANTS = require('../../common/consts/gameConstants.js');
 
 export default function Practice({handleExit}) {
 
@@ -76,8 +64,13 @@ export default function Practice({handleExit}) {
       }
     }
     function createPlayer(controls) {
-      return new Player(50, 100, playerColors[players.length], controls);
+      const player = new PlayerDto(50, 100, playerColors[players.length], controls);
+      player.x = 50;
+      player.y = 100;
+      player.color = playerColors[players.length];
+      return player
     }
+
     const players = [];
     function checkWinCondition(players) {
       return false;

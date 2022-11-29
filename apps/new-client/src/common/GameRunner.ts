@@ -1,11 +1,20 @@
-const game = require('./game');
+import { Game, PlayerDto } from '@the-octopus-battle/common'
 
-export default function GameRunner(gameCanvas, players, checkWinCondition, keyMap) {
+/**
+ * Handles the graphics and the updating of the game. The logic of the game is packed into the Game class, but this class takes care of calling
+ * the Game class periodically to update the game state and then render the game state.
+ * 
+ * @param {*} gameCanvas 
+ * @param {*} players 
+ * @param {*} checkWinCondition 
+ * @param {*} keyMap 
+ * @returns 
+ */
+
+export default function GameRunner(gameCanvas, players, checkWinCondition, keyMap, game: Game) {
   const GAME_CONSTANTS = require('./consts/gameConstants.js');
 
-  const Player = require('./player.js');
   const Controls = require('./controls.js');
-  const Crate = require('./crate.js');
 
 
   const KEY = {
@@ -37,34 +46,34 @@ export default function GameRunner(gameCanvas, players, checkWinCondition, keyMa
   var playerAreaStartX = 0;
 
 
-  game.destroyCrate = function (crate) {
-    removeFromArray(crates, crate);
-    removeFromArray(gameItems, crate);
-  };
+  // game.destroyCrate = function (crate) {
+  //   removeFromArray(crates, crate);
+  //   removeFromArray(gameItems, crate);
+  // };
 
-  game.registerPlayerHit = function (player) {
-    player.addDamage(GAME_CONSTANTS.damagePerHit);
+  // game.registerPlayerHit = function (player) {
+  //   player.addDamage(GAME_CONSTANTS.damagePerHit);
 
-    killPlayer(player);
-    scheduleRespawn(player);
-    updateBackground();
-  };
+  //   killPlayer(player);
+  //   scheduleRespawn(player);
+  //   updateBackground();
+  // };
 
   function killPlayer(player) {
     removeFromArray(gameItems, player);
     player.setPosition(-500, -500);
   }
 
-  function scheduleRespawn(player) {
-    window.setTimeout( () => {
-      player.reset();
-      if(player.getHealth() > 0 && gameItems.indexOf(player) === -1) {
+  // function scheduleRespawn(player: PlayerDto) {
+  //   window.setTimeout( () => {
+  //     player.reset();
+  //     if(player.getHealth() > 0 && gameItems.indexOf(player) === -1) {
 
-        gameItems.push(player);
-      }
-    },
-    GAME_CONSTANTS.playerRespawnTime * 1000);
-  }
+  //       gameItems.push(player);
+  //     }
+  //   },
+  //   GAME_CONSTANTS.playerRespawnTime * 1000);
+  // }
 
   function removeFromArray(array, item) {
     if(array) {
@@ -122,24 +131,24 @@ export default function GameRunner(gameCanvas, players, checkWinCondition, keyMa
   window.onEachFrame(mainGameLoop);
 
 
-  function scheduleCrate() {
-    const timeoutTime = GAME_CONSTANTS.letterSpawnFrequency +  (Math.random() - 0.5) * GAME_CONSTANTS.letterSpawnFrequency;
-    window.setTimeout(() => {
-      generateCrate();
-      scheduleCrate();
-    }, timeoutTime * 1000);
-  }
+  // function scheduleCrate() {
+  //   const timeoutTime = GAME_CONSTANTS.letterSpawnFrequency +  (Math.random() - 0.5) * GAME_CONSTANTS.letterSpawnFrequency;
+  //   window.setTimeout(() => {
+  //     generateCrate();
+  //     scheduleCrate();
+  //   }, timeoutTime * 1000);
+  // }
 
-  function generateCrate() {
-    const x = playerAreaStartX + Math.random() * (gameCanvas.width - playerAreaStartX);
-    const y = Math.random() * (gameCanvas.height);
-    const imgSrc = generateAstreoidImageSrc();
-    const crate = new Crate(x, y, imgSrc);
-    gameItems.push(crate);
-    crates.push(crate);
-  }
+  // function generateCrate() {
+  //   const x = playerAreaStartX + Math.random() * (gameCanvas.width - playerAreaStartX);
+  //   const y = Math.random() * (gameCanvas.height);
+  //   const imgSrc = generateAstreoidImageSrc();
+  //   const crate = new Crate(x, y, imgSrc);
+  //   gameItems.push(crate);
+  //   crates.push(crate);
+  // }
 
-  scheduleCrate();
+  // scheduleCrate();
 
   function startGame() {
     players.forEach(p => {
@@ -164,7 +173,6 @@ export default function GameRunner(gameCanvas, players, checkWinCondition, keyMa
 
   function mainGameLoop() {
 
-    
     //renderContext.drawImage(video, 0, 0, gameCanvas.width, gameCanvas.height);
     renderContext.fillStyle = "black"
     renderContext.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
@@ -196,26 +204,7 @@ export default function GameRunner(gameCanvas, players, checkWinCondition, keyMa
     context.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
     renderTitle(context);
 
-    if(!game.isRunning) {
-      renderPressToStartText(context);
-    }
-
     renderHealthBars(context);
-  }
-
-  function renderPressToStartText(ctx) {
-    var title = 'Press F, ALT or A on Controller to Join. \nEnter To Start!';
-    ctx.font='50px Verdana';
-
-    const textMeasures = ctx.measureText(title);
-
-    var gradient= ctx.createLinearGradient(0, 0, textMeasures.width, 0);
-    gradient.addColorStop('0','orange');
-    gradient.addColorStop('0.5','blue');
-    gradient.addColorStop('1.0','orange');
-    ctx.fillStyle=gradient;
-
-    ctx.fillText(title, (gameCanvas.width - textMeasures.width)/ 2, (gameCanvas.height - 50)/2);
   }
 
   function renderHealthBars(context) {
@@ -250,8 +239,9 @@ export default function GameRunner(gameCanvas, players, checkWinCondition, keyMa
     ctx.fillText(title, 20, 20);
   }
 
-  function renderToCanvas(width, height, render, canvas) {
-    canvas = canvas || createCanvas(width, height, canvas);
+  function renderToCanvas(width, height, render) {
+    this.canvas = this.canvas || createCanvas(width, height);
+    const canvas = this.canvas;
     render(canvas, canvas.getContext('2d'));
     return canvas;
   }
@@ -265,7 +255,7 @@ export default function GameRunner(gameCanvas, players, checkWinCondition, keyMa
 
 
   function rerenderBackground() {
-    backgroundCanvas = renderToCanvas(gameCanvas.width, gameCanvas.height, renderBackground, backgroundCanvas);
+    backgroundCanvas = renderToCanvas(gameCanvas.width, gameCanvas.height, renderBackground);
     shouldRerenderBackground = false;
   }
 

@@ -1,13 +1,11 @@
 import { useEffect } from 'react';
-import GameRunner from '../../common/gameRunner.js';
+import GameRunner from '../../common/GameRunner.ts';
 import playerColors from '../../common/consts/playerColors.js';
 import KEY from '../../common/consts/keyCodes.js';
 import { io } from 'socket.io-client';
 
-const Player = require('../../common/player.js');
+const PlayerDto = require('@the-octopus-battle/common').PlayerDto;
 const Controls = require('../../common/controls.js');
-const Crate = require('../../common/crate.js');
-const game = require('../../common/game.js');
 const keyMap = {};
 
 const GAME_CONSTANTS = require('../../common/consts/gameConstants.js');
@@ -81,10 +79,15 @@ export default function JoinOnline({handleExit}) {
         keyboardOneJoined = true;
       }
     }
-    function createPlayer(controls) {
-      return new Player(50, 100, playerColors[players.length], controls);
-    }
     const players = [];
+    function createPlayer(controls) {
+      const player = new PlayerDto(players.length);
+      player.x = 50;
+      player.y = 100;
+      player.color = playerColors[player.id];
+      player.controls = controls;
+      return player
+    }
     function checkWinCondition(players) {
       return false;
     }
