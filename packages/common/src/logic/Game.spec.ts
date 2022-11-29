@@ -1,7 +1,8 @@
-import {PlayerControlsEventDto} from '../dtos';
+import { PlayerControlsEventDto } from '../dtos';
 import { Game } from './Game';
-import { AstroidSpawnedEventDto, PickUpAstroidEventDto, PlayerAction, PlayerHitEventDto, PlayerKilledEventDto, PlayerRespawnedEventDto } from '../dtos/GameEventDto';
+import { AstroidSpawnedEventDto, GameEventType, PickUpAstroidEventDto, PlayerAction, PlayerHitEventDto, PlayerKilledEventDto, PlayerRespawnedEventDto } from './events/GameEventDto';
 import { PlayerState } from '../dtos';
+import { SpawnAstroid } from './commands/GameCommands';
 
 
 describe('Game', () => {
@@ -11,25 +12,58 @@ describe('Game', () => {
         game = new Game();
     });
 
-    it('should create an instance', () => {
-        expect(game).toBeTruthy();
+    describe('Init', () => {
+        it('should create an instance', () => {
+            expect(game).toBeTruthy();
+        });
     });
 
-    it('should add player when calling join', () => {
-        game.addPlayer(() => {});
-        expect(game.gameState.players.length).toBe(1);
+    describe('Direct Calls', () => {
+        it('should add player when calling join', () => {
+            game.addPlayer(() => { });
+            expect(game.gameState.players.length).toBe(1);
+        });
+
+        it('should remove player when calling leave', () => {
+            const playerId = game.addPlayer(() => { });
+            game.removePlayer(playerId);
+            expect(game.gameState.players.length).toBe(0);
+        });
     });
 
-    it('should remove player when calling leave', () => {
-        const playerId = game.addPlayer(() => {});
-        game.removePlayer(playerId);
-        expect(game.gameState.players.length).toBe(0);
+    describe('Iterate', () => {
+        it('Should spawn Astroid', () => {
+            const command = new SpawnAstroid(5, 5)
+            const events = game.applyCommand(command);
+            expect(events.length).toBe(1);
+            expect(events[0].type).toBe(GameEventType.ASTROID_SPAWNED);
+        });
+
+        it('Should apply pending events on iterate', () => {
+            const command = new SpawnAstroid(5, 5)
+            game.applyCommand(command);
+
+            const events = game.iterate();
+            expect(events.length).toBe(1);
+            expect(events[0].type).toBe(GameEventType.ASTROID_SPAWNED);
+        });
+
+        it('Should clear pending events after iterate', () => {
+            const command = new SpawnAstroid(5, 5)
+            game.applyCommand(command);
+
+            // return one event
+            game.iterate();
+            // Should be empty
+            const events = game.iterate();
+            expect(events.length).toBe(0);
+        });
     });
 
 
     describe('Events', () => {
         it('should apply player controls event', () => {
-            const playerId = game.addPlayer(() => {});
+            const playerId = game.addPlayer(() => { });
             const event = new PlayerControlsEventDto(playerId, PlayerAction.UP, true);
             expect(game.gameState.players[0].controls.up).toBe(false);
         });
@@ -41,7 +75,7 @@ describe('Game', () => {
         });
 
         it('should apply player hit event', () => {
-            const playerId = game.addPlayer(() => {});
+            const playerId = game.addPlayer(() => { });
             const astroid = new AstroidSpawnedEventDto(1, 5, 5);
             game.applyEvent(astroid);
             expect(game.gameState.players[0].health).toBe(100);
@@ -51,14 +85,14 @@ describe('Game', () => {
         });
 
         it('should update player state when dead', () => {
-            const playerId = game.addPlayer(() => {});
+            const playerId = game.addPlayer(() => { });
             const playerKilledEvent = new PlayerKilledEventDto(playerId);
             game.applyEvent(playerKilledEvent);
             expect(game.gameState.players[0].state).toBe(PlayerState.Dead);
         });
 
         it('should set player state to alive when respawned', () => {
-            const playerId = game.addPlayer(() => {});
+            const playerId = game.addPlayer(() => { });
             const playerKilledEvent = new PlayerKilledEventDto(playerId);
             game.applyEvent(playerKilledEvent);
             expect(game.gameState.players[0].state).toBe(PlayerState.Dead);
@@ -68,7 +102,7 @@ describe('Game', () => {
         });
 
         it('should update carried astroid when player picks up', () => {
-            const playerId = game.addPlayer(() => {});
+            const playerId = game.addPlayer(() => { });
             const astroid = new AstroidSpawnedEventDto(1, 5, 5);
             game.applyEvent(astroid);
             const pickUpEvent = new PickUpAstroidEventDto(playerId, 1);

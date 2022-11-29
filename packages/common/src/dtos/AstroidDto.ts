@@ -1,4 +1,4 @@
-import { AstroidSpawnedEventDto } from "./GameEventDto";
+import { AstroidSpawnedEventDto } from "../logic/events/GameEventDto";
 
 
 export enum AstroidState {

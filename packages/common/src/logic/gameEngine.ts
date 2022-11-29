@@ -1,10 +1,10 @@
 import {GameStateDto} from "../dtos";
-import { GameEventDto } from "../dtos/GameEventDto";
+import { GameEventDto } from "./events/GameEventDto";
 import {GameConstants} from "./GameConstants";
 
 
 
-export function iterateGameState(gameState: GameStateDto, gameConstants: GameConstants): [GameStateDto, GameEventDto[]] {
+export function iterateGameState(gameState: GameStateDto,  gameConstants: GameConstants, pendingEvents: GameEventDto[] = []): [GameStateDto, GameEventDto[]] {
   gameState.astroids.forEach(astroid => astroid.vy += gameConstants.g);
 
   updateControls(gameState, gameConstants);
@@ -13,7 +13,7 @@ export function iterateGameState(gameState: GameStateDto, gameConstants: GameCon
 
   gameState.iteration++;
 
-  return [gameState, []];
+  return [gameState, pendingEvents];
 }
 
 function updateControls(gameState: GameStateDto, gameConstants: GameConstants) {

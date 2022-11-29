@@ -1,4 +1,4 @@
-import {PlayerAction, PlayerControlsEventDto} from "./GameEventDto";
+import {PlayerAction, PlayerControlsEventDto} from "../logic/events/GameEventDto";
 
 export class PlayerControls {
     readonly left: boolean = false;

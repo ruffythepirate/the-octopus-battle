@@ -1,6 +1,6 @@
 import {PlayerControls, applyControlEvent} from './PlayerControls';
 import { RopeDto } from './RopeDto';
-import { PlayerControlsEventDto } from './GameEventDto';
+import { PlayerControlsEventDto } from '../logic/events/GameEventDto';
 
 export enum PlayerState {
   Alive = 'Alive',
