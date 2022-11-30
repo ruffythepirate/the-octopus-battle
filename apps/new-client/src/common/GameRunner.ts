@@ -95,14 +95,14 @@ export default function GameRunner(gameCanvas, players, checkWinCondition, keyMa
 
   (function() {
     var onEachFrame;
-    if (window.webkitRequestAnimationFrame) {
+    if ((window as any).webkitRequestAnimationFrame) {
       onEachFrame = function(cb) {
-        var _cb = function() { cb(); window.webkitRequestAnimationFrame(_cb); };
+        var _cb = function() { cb(); (window as any).webkitRequestAnimationFrame(_cb); };
         _cb();
       };
-    } else if (window.mozRequestAnimationFrame) {
+    } else if ((window as any).mozRequestAnimationFrame) {
       onEachFrame = function(cb) {
-        var _cb = function() { cb(); window.mozRequestAnimationFrame(_cb); };
+        var _cb = function() { cb(); (window as any).mozRequestAnimationFrame(_cb); };
         _cb();
       };
     } else {
@@ -111,7 +111,7 @@ export default function GameRunner(gameCanvas, players, checkWinCondition, keyMa
       };
     }
 
-    window.onEachFrame = onEachFrame;
+    (window as any).onEachFrame = onEachFrame;
   })();
 
   document.addEventListener('keydown', function(ev) { return onkey(ev, ev.keyCode, true);  }, false);
@@ -128,7 +128,7 @@ export default function GameRunner(gameCanvas, players, checkWinCondition, keyMa
 
 
 
-  window.onEachFrame(mainGameLoop);
+  (window as any).onEachFrame(mainGameLoop);
 
 
   // function scheduleCrate() {
@@ -187,7 +187,7 @@ export default function GameRunner(gameCanvas, players, checkWinCondition, keyMa
 
     if(game.isRunning) {
       if(checkWinCondition(players)) {
-        endGame(null);
+        endGame();
       }
     }
   }

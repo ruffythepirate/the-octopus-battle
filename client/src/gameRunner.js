@@ -175,7 +175,7 @@ export default function GameRunner(gameCanvas, players, checkWinCondition, keyMa
 
     if(game.isRunning) {
       if(checkWinCondition(players)) {
-        endGame(null);
+        endGame();
       }
     }
 
