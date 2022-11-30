@@ -1,5 +1,5 @@
 
-const playerColors = [
+export default [
     'yellow',
     'orange',
     'purple',
@@ -7,5 +7,3 @@ const playerColors = [
     'blue',
     'maroon'
 ];
-
-export default playerColors;

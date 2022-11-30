@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import './splitScreen.css';
-import playerColors from '../../common/consts/playerColors.js';
+import playerColors from '../../common/consts/playerColors';
 
 import KEY from '../../common/consts/keyCodes.js';
 

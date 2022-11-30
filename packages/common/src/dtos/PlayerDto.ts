@@ -23,13 +23,21 @@ export class PlayerDto {
   color: string = 'red';
 
   /**
-   * The x coordinate of the player
+   * The x coordinate of the top left corner of the player
    */
   x: number = 0.0;
   /**
-   * The y coordinate of the player
+   * The y coordinate of the top left corner of the player
    */
   y: number = 0.0;
+  /**
+   * The width of the player.
+   */
+  w: number = 35;
+  /**
+   * The height of the player.
+   */
+  h: number = 35;
   /**
    * The x velocity of the player
    */
@@ -69,5 +77,21 @@ export class PlayerDto {
 
   applyControlEvent(event: PlayerControlsEventDto) {
     this.controls = applyControlEvent(this.controls, event);
+  }
+
+  /**
+   * Returns the x coordinate of the center of the player.
+   * @returns {number}
+   * @memberof PlayerDto
+   */
+  getX() {
+    return this.x + this.w / 2;
+  }
+
+  /**
+   * Returns the y coordinate of the center of the player.
+   */
+  getY() {
+    return this.y + this.h / 2;
   }
 }

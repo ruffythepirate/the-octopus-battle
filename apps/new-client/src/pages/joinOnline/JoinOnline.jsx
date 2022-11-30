@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import GameRunner from '../../common/GameRunner.ts';
-import playerColors from '../../common/consts/playerColors.js';
+import playerColors from '../../common/consts/playerColors';
 import KEY from '../../common/consts/keyCodes.js';
 import { io } from 'socket.io-client';
 
