@@ -69,10 +69,12 @@ export class PlayerDto {
   /**
    * The player's rope.
    */
-  rope: RopeDto = new RopeDto();
+  rope: RopeDto = new RopeDto(15);
 
   constructor(id: number) {
     this.id = id;
+
+    this.rope.resetRope(this.getX(), this.getY());
   }
 
   applyControlEvent(event: PlayerControlsEventDto) {

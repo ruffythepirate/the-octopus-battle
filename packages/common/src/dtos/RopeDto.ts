@@ -1,36 +1,61 @@
+import {IPoint} from "../logic/rope/IPoint";
+import {VectorDto} from "./VectorDto";
 
-class PointDto {
-    x: number;
-    y: number;
+export class PointDto implements IPoint {
+  x: number;
+  y: number;
 
-    constructor(x: number, y: number) {
-        this.x = x;
-        this.y = y;
-    }
+  constructor(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+  }
+
+  getX(): number {
+    return this.x;
+  }
+
+  getY(): number {
+    return this.y;
+  }
 }
 
-class VectorDto {
-    x: number;
-    y: number;
 
-    constructor(x: number, y: number) {
-        this.x = x;
-        this.y = y;
-    }
-}
+export class ParticleDto {
+  currentPosition: PointDto;
+  lastPosition: PointDto;
 
-class ParticleDto {
-    position: PointDto;
-    velocity: VectorDto;
-    acceleration: VectorDto;
-
-    constructor(position: PointDto, velocity: VectorDto, acceleration: VectorDto) {
-        this.position = position;
-        this.velocity = velocity;
-        this.acceleration = acceleration;
-    }
+  constructor(
+    currentPosition: PointDto,
+    lastPosition: PointDto
+  ) {
+    this.currentPosition = currentPosition;
+    this.lastPosition = lastPosition;
+  }
 }
 
 export class RopeDto {
-    particles: ParticleDto[] = [];
+  particles: ParticleDto[] = [];
+
+  constructor(particleCount: number) {
+    for (let i = 0; i < particleCount; i++) {
+      this.particles.push(
+        new ParticleDto(
+          new PointDto(0, 0),
+          new VectorDto(0, 0),
+        )
+      );
+    }
+  }
+
+  /**
+   * Resets the rope based on this new position
+   */
+  resetRope(x: number, y: number) {
+    this.particles[0].currentPosition = new PointDto(x, y);
+    this.particles[0].lastPosition = new PointDto(x, y);
+
+    for (let i = 1; i < this.particles.length; i++) {
+      this.particles[i].currentPosition = new PointDto(x, y + i * 8);
+    }
+  }
 }
