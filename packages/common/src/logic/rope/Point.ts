@@ -24,19 +24,8 @@ export class Point implements IPoint {
     this.y *= multiplier;
   }
 
-  min(x, y): void {
-    if (this.x < x)
-      this.x = x;
-    if (this.y < y)
-      this.y = y;
-  }
-
-
-  max(x, y): void {
-    if (this.x > x)
-      this.x = x;
-    if (this.y > y)
-      this.y = y;
+  abs(): number {
+    return Math.sqrt(this.x * this.x + this.y * this.y);
   }
 
   copy(point): void {

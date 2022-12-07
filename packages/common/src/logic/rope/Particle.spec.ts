@@ -41,4 +41,20 @@ describe('Particle', () => {
     expect(particle.lastPosition.getX()).toBe(0);
     expect(particle.lastPosition.getY()).toBe(0);
   });
+
+  it('should applyDelta', () => {
+    const particle = new Particle(particleDto);
+    particle.applyDelta(new PointDto(1, 1));
+
+    expect(particle.currentPosition.getX()).toBe(2);
+    expect(particle.currentPosition.getY()).toBe(3);
+    expect(particle.lastPosition.getX()).toBe(3);
+    expect(particle.lastPosition.getY()).toBe(4);
+  });
+
+  it('should satifyConstraints', () => {
+    const particle = new Particle(particleDto);
+    particle.satifyConstraints();
+
+  });
 });

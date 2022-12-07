@@ -33,6 +33,11 @@ describe('Point', () => {
     expect(point.getY()).toBe(4);
   });
 
+  it('should calculate abs', () => {
+    const point = new Point(3, 4);
+    expect(point.abs()).toBe(5);
+  });
+
   it('should copy', () => {
     const point = new Point(1, 2);
     point.copy(new Point(2, 3));
