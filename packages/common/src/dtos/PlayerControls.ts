@@ -1,18 +1,33 @@
 import {PlayerAction, PlayerControlsEventDto} from "../logic/events/GameEventDto";
 
 export class PlayerControls {
-    readonly left: boolean = false;
-    readonly right: boolean = false;
-    readonly up: boolean = false;
-    readonly down: boolean = false;
-    readonly fire: boolean = false;
+    left: boolean = false;
+    right: boolean = false;
+    up: boolean = false;
+    down: boolean = false;
 
     constructor() {
         this.left = false;
         this.right = false;
         this.up = false;
         this.down = false;
-        this.fire = false;
+    }
+
+    applyEvent(event: PlayerControlsEventDto) {
+        switch (event.action) {
+            case PlayerAction.LEFT:
+                this.left = event.pressed;
+                break;
+            case PlayerAction.RIGHT:
+                this.right = event.pressed;
+                break;
+            case PlayerAction.UP:
+                this.up = event.pressed;
+                break;
+            case PlayerAction.DOWN:
+                this.down = event.pressed;
+                break;
+        }
     }
 }
 

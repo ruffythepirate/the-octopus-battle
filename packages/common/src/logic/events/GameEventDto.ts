@@ -80,6 +80,10 @@ export class PlayerControlsEventDto extends GameEventDto {
         this.action = action;
         this.pressed = pressed;
     }
+
+    static createEvent(playerId: number, action: PlayerAction, pressed: boolean): PlayerControlsEventDto {
+        return new PlayerControlsEventDto(playerId, action, pressed);
+    }
 }
 
 export class PickUpAstroidEventDto extends GameEventDto {
