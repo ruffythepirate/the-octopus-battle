@@ -44,3 +44,11 @@ Perhaps this is really best done through interfaces when I think about it. My sp
 
 One way is to have a Renderer implementation, another one is to have a wrapper around the logic one that also contains the render logic. Either way would work just fine since our game isn't very complex.
 
+
+# Thinking
+
+So I had the great idea that the `gameEngine` would be a pure function that would also operate on states. That's great. Now the requirement is coming that the Rope perhaps is not a pure function. How can I handle this?
+
+My old model was thinking that most computations are not so complicated, hence it's not a problem that they're residing in the gameEngine.ts. Now I'm finding the Rope calculation extensively complicated and for that reason I want to encapsulate it. 
+
+There's a conflict between being able to work with idempotent entities in pure functions and to have more heavy machinary computations encapsulated in a rope class.
